@@ -35,3 +35,4 @@ while True: # main game loop
             pygame.quit()
             sys.exit()
     pygame.display.update()
+    #comment as a test
