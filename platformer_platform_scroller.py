@@ -3,6 +3,9 @@
 #Credit to : http://programarcasegames.com/python_examples/sprite_sheets/
 
 #Game art from Kenney.nl: http://opengameart.org/content/platformer-art-deluxe
+#<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by vectorpocket - www.freepik.com</a>
+#<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a>
+
 
 import pygame
 import platformer_constants as constants
@@ -25,8 +28,9 @@ def main():
 
     #Create all the levels
     level_list = []
-    level_list.append(levels.Level_01(player))
-    level_list.append(levels.Level_02(player))
+    level_list.append(levels.Level_03(player))
+    #level_list.append(levels.Level_02(player))
+    #level_list.append(levels.Level_01(player))
 
     #set the current level
     current_level_no = 0
@@ -36,7 +40,7 @@ def main():
     player.level = current_level
 
     player.rect.x = 340
-    player.rect.y = constants.SCREEN_HEIGHT - player.rect.height
+    player.rect.y = current_level.player_start_y
     active_sprite_list.add(player)
 
     #loop until the user clicks the close button
@@ -90,6 +94,9 @@ def main():
                 current_level_no += 1
                 current_level = level_list[current_level_no]
                 player.level = current_level
+                player.rect.y = current_level.player_start_y
+                player.rect.x = current_level.player_start_x
+            else: break
 
         #ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
         current_level.draw(screen)

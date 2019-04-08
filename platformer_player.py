@@ -1,5 +1,5 @@
 #holds Player class, which represents the user-controlled sprite on the screen
-
+#76, 100
 import pygame
 import platformer_constants as constants
 from platformer_platforms import MovingPlatform
@@ -27,48 +27,166 @@ class Player(pygame.sprite.Sprite):
         #what direction is player facing?
         self.direction = "R"
 
+        #is player currently standing still?
+        self.idle = True
+
         #List of sprites player could bump into
         self.level = None
 
-        sprite_sheet = SpriteSheet("game_images/p1_walk.png")
+        sprite_sheet = SpriteSheet("game_images/girlwalksprite.png")
         #Load all the right-facing images into a list
-        image = sprite_sheet.get_image(0, 0, 66, 90)
+        image = sprite_sheet.get_image(0, 0, 83, 91)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(66, 0, 66, 90)
+        image = sprite_sheet.get_image(84, 0, 83, 91)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(132, 0, 67, 90)
+        image = sprite_sheet.get_image(167, 0, 83, 91)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(0, 93, 66, 90)
+        image = sprite_sheet.get_image(250, 0, 83, 91)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(66, 93, 66, 90)
+        image = sprite_sheet.get_image(0, 92, 83, 91)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(132, 93, 72, 90)
+        image = sprite_sheet.get_image(84, 92, 83, 91)
         self.walking_frames_r.append(image)
-        image = sprite_sheet.get_image(0, 186, 70, 90)
+        image = sprite_sheet.get_image(167, 92, 83, 91)
         self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(250, 92, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(0, 183, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(84, 183, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(167, 183, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(250, 183, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(0, 274, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(84, 274, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(167, 274, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(250, 274, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(0, 365, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(84, 365, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(167, 365, 83, 91)
+        self.walking_frames_r.append(image)
+        image = sprite_sheet.get_image(250, 365, 83, 91)
+        self.walking_frames_r.append(image)
+        # image = sprite_sheet.get_image(0, 455, 83, 91)
+        # self.walking_frames_r.append(image)
+        # image = sprite_sheet.get_image(84, 455, 83, 91)
+        # self.walking_frames_r.append(image)
+        # image = sprite_sheet.get_image(167, 455, 83, 91)
+        # self.walking_frames_r.append(image)
+        # image = sprite_sheet.get_image(250, 455, 83, 91)
+        # self.walking_frames_r.append(image)
+
 
         #Load all the right-facing images, then flip them to make them face left
-        image = sprite_sheet.get_image(0, 0, 66, 90)
+        # Load all the right-facing images into a list
+        image = sprite_sheet.get_image(0, 0, 83, 91)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(66, 0, 66, 90)
+        image = sprite_sheet.get_image(84, 0, 83, 91)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(132, 0, 67, 90)
+        image = sprite_sheet.get_image(167, 0, 83, 91)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(0, 93, 66, 90)
+        image = sprite_sheet.get_image(250, 0, 83, 91)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(66, 93, 66, 90)
+        image = sprite_sheet.get_image(0, 92, 83, 91)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(132, 93, 72, 90)
+        image = sprite_sheet.get_image(84, 92, 83, 91)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        image = sprite_sheet.get_image(0, 186, 70, 90)
+        image = sprite_sheet.get_image(167, 92, 83, 91)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(250, 92, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(0, 183, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(84, 183, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(167, 183, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(250, 183, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(0, 274, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(84, 274, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(167, 274, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(250, 274, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(0, 365, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(84, 365, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(167, 365, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        image = sprite_sheet.get_image(250, 365, 83, 91)
+        image = pygame.transform.flip(image, True, False)
+        self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(334, 365, 83, 91)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(0, 455, 83, 91)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(84, 455, 83, 91)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(167, 455, 83, 91)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(250, 455, 83, 91)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(334, 455, 83, 91)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+
+        # image = sprite_sheet.get_image(0, 0, 66, 90)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(66, 0, 66, 90)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(132, 0, 67, 90)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(0, 93, 66, 90)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(66, 93, 66, 90)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(132, 93, 72, 90)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
+        # image = sprite_sheet.get_image(0, 186, 70, 90)
+        # image = pygame.transform.flip(image, True, False)
+        # self.walking_frames_l.append(image)
 
         #Set the image the player starts with
         self.image = self.walking_frames_r[0]
@@ -86,10 +204,16 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.change_x
         pos = self.rect.x + self.level.world_shift
         if self.direction == "R":
-            frame = (pos // 30) % len(self.walking_frames_r)
+            if self.idle == False:
+                frame = (pos // 20) % len(self.walking_frames_r)
+            else:
+                frame = 17
             self.image = self.walking_frames_r[frame]
         else:
-            frame = (pos // 30) % len(self.walking_frames_l)
+            if self.idle == False:
+                frame = (pos // 20) % len(self.walking_frames_l)
+            else:
+                frame = 17
             self.image = self.walking_frames_l[frame]
 
         #see if we hit anything
@@ -149,12 +273,15 @@ class Player(pygame.sprite.Sprite):
         #called when user hits left arrow
         self.change_x = -6
         self.direction = "L"
+        self.idle = False
 
     def go_right(self):
         #called when user hit right arrow
         self.change_x = 6
         self.direction = "R"
+        self.idle = False
 
     def stop(self):
         #called when user lets off the keyboard
         self.change_x = 0
+        self.idle = True
