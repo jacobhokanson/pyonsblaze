@@ -6,6 +6,9 @@
 #<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by vectorpocket - www.freepik.com</a>
 #<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a>
 
+#Sounds
+#https://jalastram.itch.io/8-bit-jump-sound-effects/download/eyJleHBpcmVzIjoxNTU0Nzc2NDA3LCJpZCI6NTY1MjJ9.flChJi4ePYJyKySVgpLzZ7BL8yM%3d
+#https://freesound.org/people/FoolBoyMedia/sounds/264295/
 
 import pygame
 import platformer_constants as constants
@@ -42,6 +45,10 @@ def main():
     player.rect.x = 340
     player.rect.y = current_level.player_start_y
     active_sprite_list.add(player)
+
+    #background music
+    pygame.mixer.music.load('game_sounds/bg_music_loop.wav')
+    pygame.mixer.music.play(-1, 0.0)
 
     #loop until the user clicks the close button
     done = False
@@ -109,6 +116,7 @@ def main():
         #go ahead and update the screen with what we've drawn
         pygame.display.flip()
 
+    pygame.mixer.music.stop()
     pygame.quit()
 
 if __name__ == "__main__":

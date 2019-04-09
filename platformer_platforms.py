@@ -23,6 +23,12 @@ STONE_PLATFORM_RIGHT  = (792, 648, 70, 40)
 STONE_MIDDLE          = (792, 144, 70, 70)
 DIRT                  = (576, 864, 70, 70)
 
+PURPLE_LEFT           = (71, 504, 70, 70)
+PURPLE_RIGHT          = (71, 361, 70, 70)
+PURPLE_MIDDLE         = (71, 434, 70, 70)
+PURPLE_SINGLE         = (144, 648, 70, 70)
+PURPLE_SINGLE_SMALL   = (143, 144, 70, 40)
+
 class Platform(pygame.sprite.Sprite):
     """ Platform the user can jump on """
 

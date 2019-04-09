@@ -6,6 +6,7 @@ WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 LIME_GREEN = (57, 255, 20)
+PINK_KEY = (255, 0, 174)
 
 
 #Screen dimensions
