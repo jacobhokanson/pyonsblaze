@@ -30,6 +30,8 @@ PURPLE_MIDDLE         = (72, 433, 68, 69)
 PURPLE_SINGLE         = (144, 648, 70, 70)
 PURPLE_SINGLE_SMALL   = (143, 144, 70, 40)
 
+CARPET = (504, 0, 70, 70)
+
 class Platform(pygame.sprite.Sprite):
     """ Platform the user can jump on """
 

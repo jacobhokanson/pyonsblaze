@@ -41,7 +41,7 @@ class Level():
         # Draw the background
         # We don't shift the background as much as the sprites are shifted
         # to give a feeling of depth.
-        screen.fill(constants.BLUE)
+        screen.fill(constants.BLACK)
         screen.blit(self.background,(self.world_shift // 3 - 200,0))
 
         # Draw all the sprite lists that we have
@@ -243,7 +243,7 @@ class Level_03(Level):
         block.rect.y = 250
         block.boundary_top = 200
         block.boundary_bottom = 500
-        block.change_y = -1
+        block.change_y = -2
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
@@ -449,7 +449,7 @@ class Level_04(Level):
         block.rect.y = constants.SCREEN_HEIGHT - 75
         block.boundary_left = 700
         block.boundary_right = 850
-        block.change_x = 1
+        block.change_x = 2
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
@@ -459,7 +459,7 @@ class Level_04(Level):
         block.rect.y = constants.SCREEN_HEIGHT - 125
         block.boundary_left = 1360
         block.boundary_right = 1600
-        block.change_x = 1
+        block.change_x = 2
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
@@ -478,9 +478,9 @@ class Level_04(Level):
         block = platforms.MovingPlatform(platforms.STONE_PLATFORM_MIDDLE)
         block.rect.x = 2099
         block.rect.y = 100
-        block.boundary_left = 1750
+        block.boundary_left = 1730
         block.boundary_right = 2100
-        block.change_x = 1
+        block.change_x = 2
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
@@ -491,11 +491,301 @@ class Level_04(Level):
         block.rect.y = 300
         block.boundary_top = 200
         block.boundary_bottom = constants.SCREEN_HEIGHT - 250
-        block.change_y = -1
+        block.change_y = -2
         block.player = self.player
         block.level = self
         self.platform_list.add(block)
 
 
         self.player_start_y = constants.SCREEN_HEIGHT - 483
+        self.player_start_x = 100
+
+
+
+class Level_05(Level):
+    """ Definition for level 3. """
+
+    def __init__(self, player):
+        """ Create level 2. """
+
+        # Call the parent constructor
+        Level.__init__(self, player)
+
+        self.background = pygame.image.load("game_images/stage.jpg").convert()
+        self.background.set_colorkey(constants.PINK_KEY)
+        self.level_limit = -4300
+
+        # Array with type of platform, and x, y location of the platform.
+        level = [
+            [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 140],
+            [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 210],
+            [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 280],
+            [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 350],
+            [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 420],
+            [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 490],
+            [platforms.STONE_TOP, -136, constants.SCREEN_HEIGHT - 560],
+
+            [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 140],
+            [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 210],
+            [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 280],
+            [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 350],
+            [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 420],
+            [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 490],
+            [platforms.STONE_TOP, -68, constants.SCREEN_HEIGHT - 560],
+
+            [platforms.CARPET, 0, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 70, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 140, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 210, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 280, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 350, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 420, constants.SCREEN_HEIGHT - 70],
+
+            [platforms.CARPET, 490, constants.SCREEN_HEIGHT - 70],
+
+            [platforms.CARPET, 490, constants.SCREEN_HEIGHT - 140],
+            [platforms.CARPET, 560, constants.SCREEN_HEIGHT - 140],
+            [platforms.STONE_MIDDLE, 560, constants.SCREEN_HEIGHT - 70],
+
+            [platforms.CARPET, 560, constants.SCREEN_HEIGHT - 210],
+            [platforms.CARPET, 630, constants.SCREEN_HEIGHT - 210],
+            [platforms.STONE_MIDDLE, 630, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 630, constants.SCREEN_HEIGHT - 140],
+
+            [platforms.CARPET, 630, constants.SCREEN_HEIGHT - 280],
+            [platforms.CARPET, 700, constants.SCREEN_HEIGHT - 280],
+            [platforms.STONE_MIDDLE, 700, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 700, constants.SCREEN_HEIGHT - 140],
+            [platforms.STONE_MIDDLE, 700, constants.SCREEN_HEIGHT - 210],
+
+            [platforms.CARPET, 700, constants.SCREEN_HEIGHT - 350],
+            [platforms.CARPET, 770, constants.SCREEN_HEIGHT - 350],
+            [platforms.STONE_MIDDLE, 770, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 770, constants.SCREEN_HEIGHT - 140],
+            [platforms.STONE_MIDDLE, 770, constants.SCREEN_HEIGHT - 210],
+            [platforms.STONE_MIDDLE, 770, constants.SCREEN_HEIGHT - 280],
+
+            [platforms.STONE_MIDDLE, 1035, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 1035, constants.SCREEN_HEIGHT - 140],
+            [platforms.CARPET, 1000, constants.SCREEN_HEIGHT - 200],
+            [platforms.CARPET, 1070, constants.SCREEN_HEIGHT - 200],
+
+            [platforms.STONE_MIDDLE, 1335, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 1335, constants.SCREEN_HEIGHT - 140],
+            [platforms.STONE_MIDDLE, 1335, constants.SCREEN_HEIGHT - 210],
+            [platforms.STONE_MIDDLE, 1335, constants.SCREEN_HEIGHT - 280],
+            [platforms.CARPET, 1300, constants.SCREEN_HEIGHT - 300],
+            [platforms.CARPET, 1370, constants.SCREEN_HEIGHT - 300],
+
+            [platforms.STONE_MIDDLE, 1635, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 1635, constants.SCREEN_HEIGHT - 140],
+            [platforms.CARPET, 1600, constants.SCREEN_HEIGHT - 200],
+            [platforms.CARPET, 1670, constants.SCREEN_HEIGHT - 200],
+
+            [platforms.STONE_MIDDLE, 1935, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 1935, constants.SCREEN_HEIGHT - 140],
+            [platforms.STONE_MIDDLE, 1935, constants.SCREEN_HEIGHT - 210],
+            [platforms.STONE_MIDDLE, 1935, constants.SCREEN_HEIGHT - 280],
+            [platforms.CARPET, 1900, constants.SCREEN_HEIGHT - 300],
+            [platforms.CARPET, 1970, constants.SCREEN_HEIGHT - 300],
+
+            # [platforms.STONE_MIDDLE, 70, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 70, constants.SCREEN_HEIGHT - 140],
+            # [platforms.STONE_MIDDLE, 70, constants.SCREEN_HEIGHT - 210],
+            # [platforms.STONE_MIDDLE, 70, constants.SCREEN_HEIGHT - 280],
+            # [platforms.STONE_MIDDLE, 70, constants.SCREEN_HEIGHT - 350],
+            # [platforms.STONE_TOP, 70, constants.SCREEN_HEIGHT - 420],
+            #
+            # [platforms.STONE_MIDDLE, 138, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 138, constants.SCREEN_HEIGHT - 140],
+            # [platforms.STONE_MIDDLE, 138, constants.SCREEN_HEIGHT - 210],
+            # [platforms.STONE_MIDDLE, 138, constants.SCREEN_HEIGHT - 280],
+            # [platforms.STONE_MIDDLE, 138, constants.SCREEN_HEIGHT - 350],
+            # [platforms.STONE_TOP, 138, constants.SCREEN_HEIGHT - 420],
+            #
+            # [platforms.STONE_MIDDLE, 206, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 206, constants.SCREEN_HEIGHT - 140],
+            # [platforms.STONE_MIDDLE, 206, constants.SCREEN_HEIGHT - 210],
+            # [platforms.STONE_MIDDLE, 206, constants.SCREEN_HEIGHT - 280],
+            # [platforms.STONE_MIDDLE, 206, constants.SCREEN_HEIGHT - 350],
+            # [platforms.STONE_TOP, 206, constants.SCREEN_HEIGHT - 420],
+            #
+            # [platforms.STONE_MIDDLE, 274, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 274, constants.SCREEN_HEIGHT - 140],
+            # [platforms.STONE_MIDDLE, 274, constants.SCREEN_HEIGHT - 210],
+            # [platforms.STONE_MIDDLE, 274, constants.SCREEN_HEIGHT - 280],
+            # [platforms.STONE_MIDDLE, 274, constants.SCREEN_HEIGHT - 350],
+            # [platforms.STONE_TOP, 274, constants.SCREEN_HEIGHT - 420],
+            #
+            # [platforms.STONE_MIDDLE, 342, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 342, constants.SCREEN_HEIGHT - 140],
+            # [platforms.STONE_MIDDLE, 342, constants.SCREEN_HEIGHT - 210],
+            # [platforms.STONE_MIDDLE, 342, constants.SCREEN_HEIGHT - 280],
+            # [platforms.STONE_TOP, 342, constants.SCREEN_HEIGHT - 350],
+            #
+            #
+            # [platforms.STONE_MIDDLE, 410, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 410, constants.SCREEN_HEIGHT - 140],
+            # [platforms.STONE_MIDDLE, 410, constants.SCREEN_HEIGHT - 210],
+            # [platforms.STONE_TOP, 410, constants.SCREEN_HEIGHT - 280],
+            #
+            # [platforms.STONE_MIDDLE, 800, 0],
+            # [platforms.STONE_MIDDLE, 800, 70],
+            # [platforms.STONE_MIDDLE, 800, 140],
+            # [platforms.STONE_MIDDLE, 800, 210],
+            #
+            # [platforms.STONE_MIDDLE, 870, 0],
+            # [platforms.STONE_MIDDLE, 870, 70],
+            # [platforms.STONE_MIDDLE, 870, 140],
+            # [platforms.STONE_MIDDLE, 870, 210],
+            #
+            # [platforms.STONE_MIDDLE, 940, 0],
+            # [platforms.STONE_MIDDLE, 940, 70],
+            # [platforms.STONE_MIDDLE, 940, 140],
+            # [platforms.STONE_MIDDLE, 940, 210],
+            #
+            # [platforms.STONE_MIDDLE, 1010, 0],
+            # [platforms.STONE_MIDDLE, 1010, 70],
+            # [platforms.STONE_MIDDLE, 1010, 140],
+            # [platforms.STONE_MIDDLE, 1010, 210],
+            #
+            # [platforms.STONE_MIDDLE, 1080, 0],
+            # [platforms.STONE_MIDDLE, 1080, 70],
+            # [platforms.STONE_MIDDLE, 1080, 140],
+            # [platforms.STONE_MIDDLE, 1080, 210],
+            #
+            # [platforms.STONE_MIDDLE, 1150, 0],
+            # [platforms.STONE_MIDDLE, 1150, 70],
+            # [platforms.STONE_MIDDLE, 1150, 140],
+            # [platforms.STONE_MIDDLE, 1150, 210],
+            #
+            # [platforms.STONE_MIDDLE, 1220, 0],
+            # [platforms.STONE_MIDDLE, 1220, 70],
+            # [platforms.STONE_MIDDLE, 1220, 140],
+            # [platforms.STONE_MIDDLE, 1220, 210],
+            #
+            # [platforms.PURPLE_MIDDLE, 1290, 210],
+            # [platforms.PURPLE_MIDDLE, 1358, 210],
+            # [platforms.PURPLE_MIDDLE, 1426, 210],
+            #
+            #
+            # [platforms.PURPLE_MIDDLE, 1010, constants.SCREEN_HEIGHT - 70],
+            # [platforms.PURPLE_MIDDLE, 1078, constants.SCREEN_HEIGHT - 70],
+            # [platforms.PURPLE_MIDDLE, 1146, constants.SCREEN_HEIGHT - 70],
+            #
+            # [platforms.STONE_TOP, 2150, constants.SCREEN_HEIGHT - 300],
+            # [platforms.STONE_TOP, 2220, constants.SCREEN_HEIGHT - 300],
+            # [platforms.STONE_TOP, 2290, constants.SCREEN_HEIGHT - 300],
+            #
+            #
+            #
+            #
+
+            [platforms.STONE_MIDDLE, 2942, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 3010, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 3078, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 3146, constants.SCREEN_HEIGHT - 70],
+            [platforms.STONE_MIDDLE, 3214, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 3282, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 3350, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 3418, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 3486, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 3554, constants.SCREEN_HEIGHT - 70],
+            # [platforms.STONE_MIDDLE, 3622, constants.SCREEN_HEIGHT - 70],
+
+            [platforms.CARPET, 4310, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 4380, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 4440, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 4510, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 4580, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 4650, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 4720, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 4790, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 4860, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 4930, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 5000, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 5070, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 5140, constants.SCREEN_HEIGHT - 70],
+            [platforms.CARPET, 5210, constants.SCREEN_HEIGHT - 70],
+
+                    ]
+
+
+        # Go through the array above and add platforms
+        for platform in level:
+            block = platforms.Platform(platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.platform_list.add(block)
+
+
+        block = platforms.MovingPlatform(platforms.STONE_PLATFORM_MIDDLE)
+        block.rect.x = 2100
+        block.rect.y = constants.SCREEN_HEIGHT - 400
+        block.boundary_left = 2100
+        block.boundary_right = 2600
+        block.change_x = 2
+        block.player = self.player
+        block.level = self
+        self.platform_list.add(block)
+
+        block = platforms.MovingPlatform(platforms.STONE_PLATFORM_MIDDLE)
+        block.rect.x = 2600
+        block.rect.y = constants.SCREEN_HEIGHT - 200
+        block.boundary_left = 2100
+        block.boundary_right = 2600
+        block.change_x = 2
+        block.player = self.player
+        block.level = self
+        self.platform_list.add(block)
+
+
+
+        block = platforms.MovingPlatform(platforms.STONE_PLATFORM_MIDDLE)
+        block.rect.x = 3300
+        block.rect.y = constants.SCREEN_HEIGHT - 125
+        block.boundary_left = 3300
+        block.boundary_right = 4250
+        block.change_x = 2
+        block.player = self.player
+        block.level = self
+        self.platform_list.add(block)
+
+        # # Add a custom moving platform
+        # block = platforms.MovingPlatform(platforms.STONE_PLATFORM_MIDDLE)
+        # block.rect.x = 1750
+        # block.rect.y = 350
+        # block.boundary_top = 300
+        # block.boundary_bottom = constants.SCREEN_HEIGHT - 100
+        # block.change_y = -1
+        # block.player = self.player
+        # block.level = self
+        # self.platform_list.add(block)
+        #
+        # block = platforms.MovingPlatform(platforms.STONE_PLATFORM_MIDDLE)
+        # block.rect.x = 2099
+        # block.rect.y = 100
+        # block.boundary_left = 1750
+        # block.boundary_right = 2100
+        # block.change_x = 2
+        # block.player = self.player
+        # block.level = self
+        # self.platform_list.add(block)
+        #
+        # # Add a custom moving platform
+        # block = platforms.MovingPlatform(platforms.STONE_PLATFORM_MIDDLE)
+        # block.rect.x = 2600
+        # block.rect.y = 300
+        # block.boundary_top = 200
+        # block.boundary_bottom = constants.SCREEN_HEIGHT - 250
+        # block.change_y = -2
+        # block.player = self.player
+        # block.level = self
+        # self.platform_list.add(block)
+
+
+        self.player_start_y = constants.SCREEN_HEIGHT - 100
         self.player_start_x = 100
