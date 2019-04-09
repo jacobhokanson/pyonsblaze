@@ -20,12 +20,13 @@ STONE_PLATFORM_LEFT   = (432, 720, 70, 40)
 STONE_PLATFORM_MIDDLE = (648, 648, 70, 40)
 STONE_PLATFORM_RIGHT  = (792, 648, 70, 40)
 
-STONE_MIDDLE          = (792, 144, 70, 70)
+STONE_TOP          = (792, 144, 70, 70)
+STONE_MIDDLE       = (504, 288, 70, 70)
 DIRT                  = (576, 864, 70, 70)
 
-PURPLE_LEFT           = (71, 504, 70, 70)
-PURPLE_RIGHT          = (71, 361, 70, 70)
-PURPLE_MIDDLE         = (71, 434, 70, 70)
+PURPLE_LEFT           = (70, 504, 68, 69)
+PURPLE_RIGHT          = (70, 360, 68, 69)
+PURPLE_MIDDLE         = (72, 433, 68, 69)
 PURPLE_SINGLE         = (144, 648, 70, 70)
 PURPLE_SINGLE_SMALL   = (143, 144, 70, 40)
 

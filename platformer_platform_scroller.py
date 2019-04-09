@@ -5,6 +5,8 @@
 #Game art from Kenney.nl: http://opengameart.org/content/platformer-art-deluxe
 #<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by vectorpocket - www.freepik.com</a>
 #<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a>
+#<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by vectorpocket - www.freepik.com</a>
+
 
 #Sounds
 #https://jalastram.itch.io/8-bit-jump-sound-effects/download/eyJleHBpcmVzIjoxNTU0Nzc2NDA3LCJpZCI6NTY1MjJ9.flChJi4ePYJyKySVgpLzZ7BL8yM%3d
@@ -32,6 +34,7 @@ def main():
     #Create all the levels
     level_list = []
     level_list.append(levels.Level_03(player))
+    level_list.append(levels.Level_04(player))
     #level_list.append(levels.Level_02(player))
     #level_list.append(levels.Level_01(player))
 
@@ -42,7 +45,7 @@ def main():
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
 
-    player.rect.x = 340
+    player.rect.x = current_level.player_start_x
     player.rect.y = current_level.player_start_y
     active_sprite_list.add(player)
 
