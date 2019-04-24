@@ -8,6 +8,7 @@
 #<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by vectorpocket - www.freepik.com</a>
 #<a href="https://www.freepik.com/free-photos-vectors/business">Business vector created by katemangostar - www.freepik.com</a>
 #<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a>
+#<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a>
 
 
 
@@ -33,7 +34,7 @@ def main():
     size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
 
-    pygame.display.set_caption("Alyssa's Quest")
+    pygame.display.set_caption("Sidescroll Adventure!")
 
     #Create the player
     player = Player()
@@ -145,7 +146,7 @@ def main():
     win_music = pygame.mixer.music.load("game_sounds/winsound.mp3")
 
     fontObj = pygame.font.Font('freesansbold.ttf', 32)
-    textSurfaceObj = fontObj.render("YOU WIN! LOVE YOU!", True, constants.WHITE)
+    textSurfaceObj = fontObj.render("YOU WIN!", True, constants.WHITE)
     textRectObj = textSurfaceObj.get_rect()
     textRectObj.center = (constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)
 
