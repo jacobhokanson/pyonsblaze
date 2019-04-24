@@ -286,8 +286,8 @@ class Player(pygame.sprite.Sprite):
 
         #if it is ok to jump, set our speed upwards
         if len(platform_hit_list) > 0 or self.rect.bottom >= constants.SCREEN_HEIGHT:
-            self.change_y = -10
             self.jumpsound.play()
+            self.change_y = -10
 
     def go_left(self):
         #called when user hits left arrow

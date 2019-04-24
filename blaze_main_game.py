@@ -139,7 +139,7 @@ def main():
 
         #go ahead and update the screen with what we've drawn
         pygame.display.flip()
-    done = False
+    # done = False
     pygame.mixer.music.stop()
 
     win_music = pygame.mixer.music.load("game_sounds/winsound.mp3")
