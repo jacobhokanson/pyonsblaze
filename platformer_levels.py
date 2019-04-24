@@ -4,6 +4,8 @@ import platformer_constants as constants
 import platformer_platforms as platforms
 import platformer_interactables as items
 
+# def LevelConstructor():
+
 class Level():
     """ This is a generic super-class used to define a level.
         Create a child class for each level with level-specific
@@ -33,7 +35,7 @@ class Level():
         self.interact_list = pygame.sprite.Group()
         self.player = player
 
-    # Update everythign on this level
+    # Update everything on this level
     def update(self):
         """ Update everything in this level."""
         self.platform_list.update()
@@ -77,7 +79,7 @@ class Level():
 
 
 # Definition will follow this format: [background file path, level_limit, static platform list, moving platform list, (coin_x, coin_y), (player_start_x, player_start_y)]
-list_level_definitions = \
+level_definitions = \
 [
     # Level 1:
     [
@@ -242,7 +244,7 @@ class Level_03(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/mountain_bg.png").convert()
+        self.background = pygame.image.load("game_images/mountain_bg.png").convert_alpha()
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
