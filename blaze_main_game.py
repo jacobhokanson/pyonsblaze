@@ -42,8 +42,8 @@ def main():
     #Create all the levels
     level_list = []
     level_list.append(levels.Level_03(player))
-    level_list.append(levels.Level_04(player))
-    level_list.append((levels.Level_05(player)))
+    # level_list.append(levels.Level_04(player))
+    # level_list.append((levels.Level_05(player)))
 
     #set the current level
     current_level_no = 0
@@ -54,6 +54,7 @@ def main():
 
     player.rect.x = current_level.player_start_x
     player.rect.y = current_level.player_start_y
+    active_sprite_list.add(current_level.one_coin)
     active_sprite_list.add(player)
 
     #background music
@@ -106,10 +107,10 @@ def main():
             current_level.world_shift_x(diff)
 
         # If the player gets near the top, shift the world down (-y)
-        if player.rect.top >= 400:
-            diff = player.rect.top - 400
-            player.rect.top = 400
-            current_level.world_shift_y(diff)
+        # if player.rect.top >= 400:
+        #     diff = player.rect.top - 400
+        #     player.rect.top = 400
+        #     current_level.world_shift_y(diff)
 
         current_position = (player.rect.x + current_level.shift_hori, player.rect.y + current_level.shift_vert)
 
@@ -118,14 +119,14 @@ def main():
         if player.rect.y >= constants.SCREEN_HEIGHT - player.rect.height: #and player.change_y >= 0:
             falling_sound.play()
             current_level.world_shift_x(-current_position[0] + player.rect.x)
-            current_level.world_shift_y(current_position[1] + player.rect.y)
+            current_level.world_shift_y(-current_position[1] + player.rect.y)
             player.rect.y = current_level.player_start_y
             player.rect.x = current_level.player_start_x
 
 
-        #if player gets to end of the level, fo to the next level
-        if current_position < current_level.level_limit:
-            player.rect.x = 120
+        # #if player gets to end of the level, go to the next level
+
+        if player.coin_hit:
             if current_level_no < len(level_list)-1:
                 current_level_no += 1
                 current_level = level_list[current_level_no]
@@ -133,8 +134,20 @@ def main():
                 player.rect.y = current_level.player_start_y
                 player.rect.x = current_level.player_start_x
             else:
-                winner = True;
+                winner = True
                 break
+
+        # if current_position[0] < current_level.level_limit:
+        #     player.rect.x = 120
+        #     if current_level_no < len(level_list)-1:
+        #         current_level_no += 1
+        #         current_level = level_list[current_level_no]
+        #         player.level = current_level
+        #         player.rect.y = current_level.player_start_y
+        #         player.rect.x = current_level.player_start_x
+        #     else:
+        #         winner = True;
+        #         break
 
         #ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
         current_level.draw(screen)

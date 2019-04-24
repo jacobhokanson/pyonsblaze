@@ -175,6 +175,8 @@ class Player(pygame.sprite.Sprite):
                 #vice-versa if moving left
                 self.rect.left = block.rect.right
 
+        self.coin_hit = pygame.sprite.collide_rect(self, self.level.one_coin)
+
         #move up/down
         self.rect.y += self.change_y
 

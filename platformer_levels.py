@@ -2,6 +2,7 @@ import pygame
 
 import platformer_constants as constants
 import platformer_platforms as platforms
+import platformer_interactables as items
 
 class Level():
     """ This is a generic super-class used to define a level.
@@ -17,12 +18,8 @@ class Level():
     background = None
 
     # How far this world has been scrolled left/right
-<<<<<<< HEAD
     shift_hori = 0
-=======
-    world_shift = 0
->>>>>>> master
-    shift_vert = constants.SCREEN_HEIGHT
+    shift_vert = 0
     level_limit = -1000
     player_start_y = constants.SCREEN_HEIGHT - 100
     player_start_x = 100
@@ -33,6 +30,7 @@ class Level():
         self.platform_list = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
         self.player = player
+        self.one_coin = items.Coin()
 
     # Update everythign on this level
     def update(self):
@@ -47,11 +45,7 @@ class Level():
         # We don't shift the background as much as the sprites are shifted
         # to give a feeling of depth.
         screen.fill(constants.BLACK)
-<<<<<<< HEAD
         screen.blit(self.background,(self.shift_hori // 3 - 200,0))
-=======
-        screen.blit(self.background, (self.world_shift // 3 - 200, 0))
->>>>>>> master
 
         # Draw all the sprite lists that we have
         self.platform_list.draw(screen)
@@ -70,7 +64,6 @@ class Level():
         for enemy in self.enemy_list:
             enemy.rect.x += shift_x
 
-<<<<<<< HEAD
     def world_shift_y(self, shift_y):
 
         self.shift_vert += shift_y
@@ -80,12 +73,6 @@ class Level():
 
         for enemy in self.enemy_list:
             enemy.rect.y += shift_y
-=======
-    # def shift_vert(self, shift_y):
-    #     """When the user moves up/down and we need to scroll everything: """
-    #
-    #     self.shift_vert += shift_y
->>>>>>> master
 
 # Create platforms for the level
 class Level_01(Level):
@@ -136,6 +123,8 @@ class Level_01(Level):
         block.level = self
         self.platform_list.add(block)
 
+        self.one_coin.rect.x = 300
+        self.one_coin.rect.y = 300
 
 # Create platforms for the level
 class Level_02(Level):

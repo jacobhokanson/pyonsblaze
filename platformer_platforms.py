@@ -37,7 +37,7 @@ class Platform(pygame.sprite.Sprite):
 
     def __init__(self, sprite_sheet_data):
         """ Platform constructor. Assumes constructed with user passing in
-            an array of 5 numbers like what's defined at the top of this
+            a tuple of 4 numbers like what's defined at the top of this
             code. """
         pygame.sprite.Sprite.__init__(self)
 
