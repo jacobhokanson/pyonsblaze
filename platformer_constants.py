@@ -8,7 +8,6 @@ RED = (255, 0, 0)
 LIME_GREEN = (57, 255, 20)
 PINK_KEY = (255, 0, 174)
 
-
 #Screen dimensions
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600

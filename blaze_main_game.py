@@ -106,6 +106,10 @@ def main():
             player.rect.left = 120
             current_level.shift_world(diff)
 
+        # If the player gets near the top, shift the world down (-y)
+        # if player.rect.top >= 400:
+
+
         current_position = player.rect.x + current_level.world_shift
 
         #if player hits bottom of the screen, reset
@@ -140,7 +144,7 @@ def main():
 
         #go ahead and update the screen with what we've drawn
         pygame.display.flip()
-    done = False
+    # done = False
     pygame.mixer.music.stop()
 
     win_music = pygame.mixer.music.load("game_sounds/winsound.mp3")
