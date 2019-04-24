@@ -23,8 +23,8 @@ class Level():
     level_limit = -1000
     player_start_y = constants.SCREEN_HEIGHT - 100
     player_start_x = 100
-    coin_x = 300
-    coin_y = 300
+    coin_x = 1000
+    coin_y = 1000
 
     def __init__(self, player):
         """ Constructor. Pass in a handle to player. Needed for when moving platforms
@@ -75,6 +75,59 @@ class Level():
         for enemy in self.interact_list:
             enemy.rect.y += shift_y
 
+
+# Definition will follow this format: [background file path, level_limit, static platform list, moving platform list, (coin_x, coin_y), (player_start_x, player_start_y)]
+list_level_definitions = \
+[
+    # Level 1:
+    [
+        "game_images/citydaytimebackground.jpg",  # Background image path
+        -2500,  # level_limit
+        [  # Static platform list
+            [platforms.GRASS_LEFT, 500, 500],
+            [platforms.GRASS_MIDDLE, 570, 500],
+            [platforms.GRASS_RIGHT, 640, 500],
+            [platforms.GRASS_LEFT, 800, 400],
+            [platforms.GRASS_MIDDLE, 870, 400],
+            [platforms.GRASS_RIGHT, 940, 400],
+            [platforms.GRASS_LEFT, 1000, 500],
+            [platforms.GRASS_MIDDLE, 1070, 500],
+            [platforms.GRASS_RIGHT, 1140, 500],
+            [platforms.STONE_PLATFORM_LEFT, 1120, 280],
+            [platforms.STONE_PLATFORM_MIDDLE, 1190, 280],
+            [platforms.STONE_PLATFORM_RIGHT, 1260, 280],
+        ],
+        [  # Moving platform list
+
+        ],
+        (1200, 300), # Coin_x and Coin_y
+        (120, 50)  # Player start x and Player start y
+    ],
+    [  # Level 2:
+        "game_images/background_02.png",  # Background image path
+        -1000,
+        [
+            [platforms.STONE_PLATFORM_LEFT, 500, 550],
+            [platforms.STONE_PLATFORM_MIDDLE, 570, 550],
+            [platforms.STONE_PLATFORM_RIGHT, 640, 550],
+            [platforms.GRASS_LEFT, 800, 400],
+            [platforms.GRASS_MIDDLE, 870, 400],
+            [platforms.GRASS_RIGHT, 940, 400],
+            [platforms.GRASS_LEFT, 1000, 500],
+            [platforms.GRASS_MIDDLE, 1070, 500],
+            [platforms.GRASS_RIGHT, 1140, 500],
+            [platforms.STONE_PLATFORM_LEFT, 1120, 280],
+            [platforms.STONE_PLATFORM_MIDDLE, 1190, 280],
+            [platforms.STONE_PLATFORM_RIGHT, 1260, 280],
+        ],
+        [  # Moving platform list
+
+        ],
+        (1200, 300), # Coin_x and Coin_y
+        (120, 50)  # Player start x and Player start y
+    ],
+]
+
 # Create platforms for the level
 class Level_01(Level):
     """ Definition for level 1. """
@@ -123,8 +176,8 @@ class Level_01(Level):
         block.level = self
         self.platform_list.add(block)
 
-        coin_x = 300
-        coin_y = 300
+        self.coin_x = 300
+        self.coin_y = 300
 
         self.player_start_x = 120
         self.player_start_y =  50
@@ -307,8 +360,8 @@ class Level_03(Level):
         block.level = self
         self.platform_list.add(block)
 
-        coin_x = 300
-        coin_y = 300
+        self.coin_x = 1000
+        self.coin_y = 300
 
         self.player_start_y = constants.SCREEN_HEIGHT - 175
         self.player_start_x = 80
