@@ -18,6 +18,7 @@ class Level():
 
     # How far this world has been scrolled left/right
     world_shift = 0
+    shift_vert = constants.SCREEN_HEIGHT
     level_limit = -1000
     player_start_y = constants.SCREEN_HEIGHT - 100
     player_start_x = 100
@@ -42,7 +43,7 @@ class Level():
         # We don't shift the background as much as the sprites are shifted
         # to give a feeling of depth.
         screen.fill(constants.BLACK)
-        screen.blit(self.background,(self.world_shift // 3 - 200,0))
+        screen.blit(self.background, (self.world_shift // 3 - 200, 0))
 
         # Draw all the sprite lists that we have
         self.platform_list.draw(screen)
@@ -61,6 +62,11 @@ class Level():
         for enemy in self.enemy_list:
             enemy.rect.x += shift_x
 
+    # def shift_vert(self, shift_y):
+    #     """When the user moves up/down and we need to scroll everything: """
+    #
+    #     self.shift_vert += shift_y
+
 # Create platforms for the level
 class Level_01(Level):
     """ Definition for level 1. """
@@ -71,8 +77,8 @@ class Level_01(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/citydaytimebackground.jpg").convert()
-        self.background.set_colorkey(constants.PINK_KEY)
+        self.background = pygame.image.load("game_images/citydaytimebackground.jpg").convert_alpha()
+        # self.background.set_colorkey(constants.PINK_KEY)
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
@@ -121,8 +127,8 @@ class Level_02(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/background_02.png").convert()
-        self.background.set_colorkey(constants.PINK_KEY)
+        self.background = pygame.image.load("game_images/background_02.png").convert_alpha()
+        # self.background.set_colorkey(constants.PINK_KEY)
         self.level_limit = -1000
 
         # Array with type of platform, and x, y location of the platform.
@@ -172,8 +178,8 @@ class Level_03(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/mountain_bg.png").convert()
-        self.background.set_colorkey(constants.PINK_KEY)
+        self.background = pygame.image.load("game_images/mountain_bg.png").convert_alpha()
+        # self.background.set_colorkey(constants.PINK_KEY)
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
@@ -304,8 +310,8 @@ class Level_04(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/city_night_bg.jpg").convert()
-        self.background.set_colorkey(constants.PINK_KEY)
+        self.background = pygame.image.load("game_images/city_night_bg.jpg").convert_alpha()
+        # self.background.set_colorkey(constants.PINK_KEY)
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
@@ -511,8 +517,13 @@ class Level_05(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
+<<<<<<< HEAD
         self.background = pygame.image.load("game_images/castle.jpg").convert()
         self.background.set_colorkey(constants.PINK_KEY)
+=======
+        self.background = pygame.image.load("game_images/stage.jpg").convert_alpha()
+        # self.background.set_colorkey(constants.PINK_KEY)
+>>>>>>> origin/jdoesthings
         self.level_limit = -4300
 
         # Array with type of platform, and x, y location of the platform.
