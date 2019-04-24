@@ -57,13 +57,8 @@ def main():
     #Create all the levels
     level_list = []
     level_list.append(levels.Level_03(player))
-<<<<<<< HEAD
     # level_list.append(levels.Level_04(player))
     # level_list.append((levels.Level_05(player)))
-=======
-    #level_list.append(levels.Level_04(player))
-    #level_list.append((levels.Level_05(player)))
->>>>>>> b51fea873a57cfd896d0d47577b61706abdb6599
 
     #set the current level
     current_level_no = 0
@@ -139,57 +134,38 @@ def main():
             if player.rect.right >= 500:
                 diff = player.rect.right - 500
                 player.rect.right = 500
-<<<<<<< HEAD
                 current_level.world_shift_x(-diff)
-=======
-                current_level.shift_world(-diff)
->>>>>>> b51fea873a57cfd896d0d47577b61706abdb6599
 
             # If the player gets near the left side, shift the world right (+x)
             if player.rect.left <= 120:
                 diff = 120 - player.rect.left
                 player.rect.left = 120
-<<<<<<< HEAD
                 current_level.world_shift_x(diff)
-=======
-                current_level.shift_world(diff)
->>>>>>> b51fea873a57cfd896d0d47577b61706abdb6599
 
             # If the player gets near the top, shift the world down (-y)
             # if player.rect.top >= 400:
 
 
-<<<<<<< HEAD
             current_position = player.rect.x + current_level.shift_hori
-=======
-            current_position = player.rect.x + current_level.world_shift
->>>>>>> b51fea873a57cfd896d0d47577b61706abdb6599
 
             #if player hits bottom of the screen, reset
             if player.rect.y >= constants.SCREEN_HEIGHT - player.rect.height: #and player.change_y >= 0:
                 falling_sound.play()
-<<<<<<< HEAD
                 current_level.world_shift_x(-current_position + player.rect.x)
-=======
-                current_level.shift_world((-current_position + player.rect.x))
->>>>>>> b51fea873a57cfd896d0d47577b61706abdb6599
                 player.rect.y = current_level.player_start_y
                 player.rect.x = current_level.player_start_x
 
 
-            #if player gets to end of the level, fo to the next level
-            #current_position  = player.rect.x + current_level.world_shift
-            if current_position < current_level.level_limit:
-                player.rect.x = 120
-                if current_level_no < len(level_list)-1:
-                    current_level_no += 1
-                    current_level = level_list[current_level_no]
-                    player.level = current_level
-                    player.rect.y = current_level.player_start_y
-                    player.rect.x = current_level.player_start_x
-                else:
-                    winner = True;
-                    break
+            if player.coin_hit:
+            if current_level_no < len(level_list)-1:
+                current_level_no += 1
+                current_level = level_list[current_level_no]
+                player.level = current_level
+                player.rect.y = current_level.player_start_y
+                player.rect.x = current_level.player_start_x
+            else:
+                winner = True
+                break
 
             #ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
             current_level.draw(screen)
