@@ -13,14 +13,21 @@ class Coin(pygame.sprite.Sprite):
 
         image = coin_sprite_sheet.get_image(0, 0, 16, 16)
         self.coin_frames.append(image)
+        image = coin_sprite_sheet.get_image(17, 0, 16, 16)
+        self.coin_frames.append(image)
+        image = coin_sprite_sheet.get_image(0, 17, 16, 16)
+        self.coin_frames.append(image)
+        image = coin_sprite_sheet.get_image(17, 17, 16, 16)
+        self.coin_frames.append(image)
 
         self.image = self.coin_frames[0]
 
         self.rect = self.image.get_rect()
 
     def update(self):
+
         if self.coin_frames.index(self.image) > 0:
             self.image = self.coin_frames[(self.coin_frames.index(self.image) + 1) % len(self.coin_frames)]
 
-        if random.randint(0, 300) > 250:
+        if random.randint(0, 300) == 99:
             self.image = self.coin_frames[(self.coin_frames.index(self.image) + 1) % len(self.coin_frames)]

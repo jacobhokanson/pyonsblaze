@@ -23,6 +23,7 @@ import platformer_constants as constants
 import platformer_levels as levels
 
 from platformer_player import Player
+from platformer_interactables import Coin
 
 def main():
 
@@ -33,29 +34,36 @@ def main():
     size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
 
-    pygame.display.set_caption("Alyssa's Quest")
+    pygame.display.set_caption("ZcrollBois")
 
     #Create the player
     player = Player()
     winner = False
 
+    # Create the coin
+    end_coin = Coin()
+
     #Create all the levels
     level_list = []
     level_list.append(levels.Level_03(player))
-    # level_list.append(levels.Level_04(player))
-    # level_list.append((levels.Level_05(player)))
+    level_list.append(levels.Level_04(player))
+    level_list.append((levels.Level_05(player)))
 
     #set the current level
     current_level_no = 0
     current_level = level_list[current_level_no]
+    current_level.interact_list.add(end_coin)
+    end_coin.rect.x = current_level.coin_x
+    end_coin.rect.y = current_level.coin_y
 
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
+    player.coin = end_coin
 
     player.rect.x = current_level.player_start_x
     player.rect.y = current_level.player_start_y
-    active_sprite_list.add(current_level.one_coin)
     active_sprite_list.add(player)
+    active_sprite_list.add(end_coin)
 
     #background music
     pygame.mixer.music.load('game_sounds/bg_music_loop.wav')

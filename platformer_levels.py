@@ -12,7 +12,7 @@ class Level():
     # Lists of sprites used in all levels. Add or remove
     # lists as needed for your game. """
     platform_list = None
-    enemy_list = None
+    interact_list = None
 
     # Background image
     background = None
@@ -23,20 +23,21 @@ class Level():
     level_limit = -1000
     player_start_y = constants.SCREEN_HEIGHT - 100
     player_start_x = 100
+    coin_x = 300
+    coin_y = 300
 
     def __init__(self, player):
         """ Constructor. Pass in a handle to player. Needed for when moving platforms
             collide with the player. """
         self.platform_list = pygame.sprite.Group()
-        self.enemy_list = pygame.sprite.Group()
+        self.interact_list = pygame.sprite.Group()
         self.player = player
-        self.one_coin = items.Coin()
 
     # Update everythign on this level
     def update(self):
         """ Update everything in this level."""
         self.platform_list.update()
-        self.enemy_list.update()
+        self.interact_list.update()
 
     def draw(self, screen):
         """ Draw everything on this level. """
@@ -49,7 +50,7 @@ class Level():
 
         # Draw all the sprite lists that we have
         self.platform_list.draw(screen)
-        self.enemy_list.draw(screen)
+        self.interact_list.draw(screen)
 
     def world_shift_x(self, shift_x):
         """ When the user moves left/right and we need to scroll everything: """
@@ -61,7 +62,7 @@ class Level():
         for platform in self.platform_list:
             platform.rect.x += shift_x
 
-        for enemy in self.enemy_list:
+        for enemy in self.interact_list:
             enemy.rect.x += shift_x
 
     def world_shift_y(self, shift_y):
@@ -71,7 +72,7 @@ class Level():
         for platform in self.platform_list:
             platform.rect.y += shift_y
 
-        for enemy in self.enemy_list:
+        for enemy in self.interact_list:
             enemy.rect.y += shift_y
 
 # Create platforms for the level
@@ -84,8 +85,7 @@ class Level_01(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/citydaytimebackground.jpg").convert_alpha()
-        # self.background.set_colorkey(constants.PINK_KEY)
+        self.background = pygame.image.load("game_images/citydaytimebackground.jpg").convert()
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
@@ -123,21 +123,23 @@ class Level_01(Level):
         block.level = self
         self.platform_list.add(block)
 
-        self.one_coin.rect.x = 300
-        self.one_coin.rect.y = 300
+        coin_x = 300
+        coin_y = 300
+
+        self.player_start_x = 120
+        self.player_start_y =  50
 
 # Create platforms for the level
 class Level_02(Level):
     """ Definition for level 2. """
 
     def __init__(self, player):
-        """ Create level 1. """
+        """ Create level 2. """
 
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/background_02.png").convert_alpha()
-        # self.background.set_colorkey(constants.PINK_KEY)
+        self.background = pygame.image.load("game_images/background_02.png").convert()
         self.level_limit = -1000
 
         # Array with type of platform, and x, y location of the platform.
@@ -175,20 +177,19 @@ class Level_02(Level):
         block.level = self
         self.platform_list.add(block)
 
-        player_start_y = 200
-        player_start_x = 500
+        self.player_start_y = 200
+        self.player_start_x = 500
 
 class Level_03(Level):
     """ Definition for level 3. """
 
     def __init__(self, player):
-        """ Create level 2. """
+        """ Create level 3. """
 
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/mountain_bg.png").convert_alpha()
-        # self.background.set_colorkey(constants.PINK_KEY)
+        self.background = pygame.image.load("game_images/mountain_bg.png").convert()
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
@@ -306,21 +307,23 @@ class Level_03(Level):
         block.level = self
         self.platform_list.add(block)
 
-        player_start_y = constants.SCREEN_HEIGHT - 75
-        player_start_x = 200
+        coin_x = 300
+        coin_y = 300
+
+        self.player_start_y = constants.SCREEN_HEIGHT - 175
+        self.player_start_x = 80
 
 
 class Level_04(Level):
-    """ Definition for level 3. """
+    """ Definition for level 4. """
 
     def __init__(self, player):
-        """ Create level 2. """
+        """ Create level 4. """
 
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/city_night_bg.jpg").convert_alpha()
-        # self.background.set_colorkey(constants.PINK_KEY)
+        self.background = pygame.image.load("game_images/city_night_bg.jpg").convert()
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.
@@ -518,17 +521,16 @@ class Level_04(Level):
 
 
 class Level_05(Level):
-    """ Definition for level 3. """
+    """ Definition for level 5. """
 
     def __init__(self, player):
-        """ Create level 2. """
+        """ Create level 5. """
 
         # Call the parent constructor
         Level.__init__(self, player)
 
 
         self.background = pygame.image.load("game_images/castle.jpg").convert()
-        self.background.set_colorkey(constants.PINK_KEY)
 
         self.level_limit = -4300
 

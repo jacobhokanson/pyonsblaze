@@ -33,6 +33,9 @@ class Player(pygame.sprite.Sprite):
         #List of sprites player could bump into
         self.level = None
 
+        #Player keeps track of coin
+        self.coin = None
+
         sprite_sheet = SpriteSheet("game_images/girlwalksprite.png")
         self.jumpsound = pygame.mixer.Sound("game_sounds/jump.wav")
 
@@ -175,7 +178,7 @@ class Player(pygame.sprite.Sprite):
                 #vice-versa if moving left
                 self.rect.left = block.rect.right
 
-        self.coin_hit = pygame.sprite.collide_rect(self, self.level.one_coin)
+        self.coin_hit = pygame.sprite.collide_rect(self, self.coin)
 
         #move up/down
         self.rect.y += self.change_y
