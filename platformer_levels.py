@@ -28,7 +28,7 @@ class Level():
     coin_x = 1000
     coin_y = 1000
 
-    def __init__(self, player):
+    def __init__(self, datalist):
         """ Constructor. Pass in a handle to player. Needed for when moving platforms
             collide with the player. """
         self.platform_list = pygame.sprite.Group()
