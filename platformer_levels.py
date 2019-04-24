@@ -28,7 +28,7 @@ class Level():
     coin_x = 1000
     coin_y = 1000
 
-    def __init__(self, datalist):
+    def __init__(self, player):
         """ Constructor. Pass in a handle to player. Needed for when moving platforms
             collide with the player. """
         self.platform_list = pygame.sprite.Group()
@@ -244,7 +244,7 @@ class Level_03(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-        self.background = pygame.image.load("game_images/mountain_bg.png").convert()
+        self.background = pygame.image.load("game_images/mountain_bg.png").convert_alpha()
         self.level_limit = -2500
 
         # Array with type of platform, and x, y location of the platform.

@@ -44,14 +44,14 @@ def main():
     end_coin = Coin()
 
     #Create all the levels
-    # level_list = []
-    # level_list.append(levels.Level_03(player))
+    level_list = []
+    level_list.append(levels.Level_03(player))
     # level_list.append(levels.Level_04(player))
     # level_list.append((levels.Level_05(player)))
 
     #set the current level
     current_level_no = 0
-    current_level = levels.Level(levels.level_definitions[current_level_no])
+    current_level = level_list[current_level_no]
     current_level.interact_list.add(end_coin)  # do this in level creation?
     end_coin.rect.x = current_level.coin_x  # same
     end_coin.rect.y = current_level.coin_y  # same
