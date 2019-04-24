@@ -517,13 +517,10 @@ class Level_05(Level):
         # Call the parent constructor
         Level.__init__(self, player)
 
-<<<<<<< HEAD
+
         self.background = pygame.image.load("game_images/castle.jpg").convert()
         self.background.set_colorkey(constants.PINK_KEY)
-=======
-        self.background = pygame.image.load("game_images/stage.jpg").convert_alpha()
-        # self.background.set_colorkey(constants.PINK_KEY)
->>>>>>> origin/jdoesthings
+
         self.level_limit = -4300
 
         # Array with type of platform, and x, y location of the platform.
