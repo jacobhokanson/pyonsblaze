@@ -44,17 +44,17 @@ def main():
     end_coin = Coin()
 
     #Create all the levels
-    level_list = []
-    level_list.append(levels.Level_03(player))
-    level_list.append(levels.Level_04(player))
-    level_list.append((levels.Level_05(player)))
+    # level_list = []
+    # level_list.append(levels.Level_03(player))
+    # level_list.append(levels.Level_04(player))
+    # level_list.append((levels.Level_05(player)))
 
     #set the current level
     current_level_no = 0
-    current_level = level_list[current_level_no]
-    current_level.interact_list.add(end_coin)
-    end_coin.rect.x = current_level.coin_x
-    end_coin.rect.y = current_level.coin_y
+    current_level = levels.Level(levels.level_definitions[current_level_no])
+    current_level.interact_list.add(end_coin)  # do this in level creation?
+    end_coin.rect.x = current_level.coin_x  # same
+    end_coin.rect.y = current_level.coin_y  # same
 
     active_sprite_list = pygame.sprite.Group()
     player.level = current_level
@@ -63,7 +63,7 @@ def main():
     player.rect.x = current_level.player_start_x
     player.rect.y = current_level.player_start_y
     active_sprite_list.add(player)
-    active_sprite_list.add(end_coin)
+    # active_sprite_list.add(end_coin)  # sticks the coin to the screen rather than the world TODO: make coin appear in each level in loadlevel function (see line 55)
 
     #background music
     pygame.mixer.music.load('game_sounds/bg_music_loop.wav')
