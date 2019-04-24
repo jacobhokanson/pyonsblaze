@@ -17,7 +17,8 @@ class Level():
     background = None
 
     # How far this world has been scrolled left/right
-    world_shift = 0
+    shift_hori = 0
+    shift_vert = constants.SCREEN_HEIGHT
     level_limit = -1000
     player_start_y = constants.SCREEN_HEIGHT - 100
     player_start_x = 100
@@ -42,17 +43,17 @@ class Level():
         # We don't shift the background as much as the sprites are shifted
         # to give a feeling of depth.
         screen.fill(constants.BLACK)
-        screen.blit(self.background,(self.world_shift // 3 - 200,0))
+        screen.blit(self.background,(self.shift_hori // 3 - 200,0))
 
         # Draw all the sprite lists that we have
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
 
-    def shift_world(self, shift_x):
+    def world_shift_x(self, shift_x):
         """ When the user moves left/right and we need to scroll everything: """
 
         # Keep track of the shift amount
-        self.world_shift += shift_x
+        self.shift_hori += shift_x
 
         # Go through all the sprite lists and shift
         for platform in self.platform_list:
@@ -60,6 +61,16 @@ class Level():
 
         for enemy in self.enemy_list:
             enemy.rect.x += shift_x
+
+    def world_shift_y(self, shift_y):
+
+        self.shift_vert += shift_y
+
+        for platform in self.platform_list:
+            platform.rect.y += shift_y
+
+        for enemy in self.enemy_list:
+            enemy.rect.y += shift_y
 
 # Create platforms for the level
 class Level_01(Level):

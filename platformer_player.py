@@ -136,7 +136,7 @@ class Player(pygame.sprite.Sprite):
         self.walking_frames_r.append(image)
         image = pygame.transform.flip(image, True, False)
         self.walking_frames_l.append(image)
-        
+
         #Set the image the player starts with
         self.image = self.walking_frames_r[0]
 
@@ -151,7 +151,7 @@ class Player(pygame.sprite.Sprite):
 
         #move left/right
         self.rect.x += self.change_x
-        pos = self.rect.x + self.level.world_shift
+        pos = self.rect.x + self.level.shift_hori
         if self.direction == "R":
             if self.idle == False:
                 frame = (pos // 20) % len(self.walking_frames_r)

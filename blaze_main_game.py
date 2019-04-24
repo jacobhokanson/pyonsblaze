@@ -8,7 +8,6 @@
 #<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by vectorpocket - www.freepik.com</a>
 #<a href="https://www.freepik.com/free-photos-vectors/business">Business vector created by katemangostar - www.freepik.com</a>
 #<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a>
-#<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a>
 
 
 
@@ -34,7 +33,7 @@ def main():
     size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
 
-    pygame.display.set_caption("Sidescroll Adventure!")
+    pygame.display.set_caption("Alyssa's Quest")
 
     #Create the player
     player = Player()
@@ -98,30 +97,33 @@ def main():
         if player.rect.right >= 500:
             diff = player.rect.right - 500
             player.rect.right = 500
-            current_level.shift_world(-diff)
+            current_level.world_shift_x(-diff)
 
         # If the player gets near the left side, shift the world right (+x)
         if player.rect.left <= 120:
             diff = 120 - player.rect.left
             player.rect.left = 120
-            current_level.shift_world(diff)
+            current_level.world_shift_x(diff)
 
         # If the player gets near the top, shift the world down (-y)
-        # if player.rect.top >= 400:
+        if player.rect.top >= 400:
+            diff = player.rect.top - 400
+            player.rect.top = 400
+            current_level.world_shift_y(diff)
 
+        current_position = (player.rect.x + current_level.shift_hori, player.rect.y + current_level.shift_vert)
 
-        current_position = player.rect.x + current_level.world_shift
 
         #if player hits bottom of the screen, reset
         if player.rect.y >= constants.SCREEN_HEIGHT - player.rect.height: #and player.change_y >= 0:
             falling_sound.play()
-            current_level.shift_world((-current_position + player.rect.x))
+            current_level.world_shift_x(-current_position[0] + player.rect.x)
+            current_level.world_shift_y(current_position[1] + player.rect.y)
             player.rect.y = current_level.player_start_y
             player.rect.x = current_level.player_start_x
 
 
         #if player gets to end of the level, fo to the next level
-        #current_position  = player.rect.x + current_level.world_shift
         if current_position < current_level.level_limit:
             player.rect.x = 120
             if current_level_no < len(level_list)-1:
@@ -150,7 +152,7 @@ def main():
     win_music = pygame.mixer.music.load("game_sounds/winsound.mp3")
 
     fontObj = pygame.font.Font('freesansbold.ttf', 32)
-    textSurfaceObj = fontObj.render("YOU WIN!", True, constants.WHITE)
+    textSurfaceObj = fontObj.render("YOU WIN! LOVE YOU!", True, constants.WHITE)
     textRectObj = textSurfaceObj.get_rect()
     textRectObj.center = (constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)
 
