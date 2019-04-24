@@ -134,24 +134,24 @@ def main():
             if player.rect.right >= 500:
                 diff = player.rect.right - 500
                 player.rect.right = 500
-                current_level.shift_world(-diff)
+                current_level.world_shift_x(-diff)
 
             # If the player gets near the left side, shift the world right (+x)
             if player.rect.left <= 120:
                 diff = 120 - player.rect.left
                 player.rect.left = 120
-                current_level.shift_world(diff)
+                current_level.world_shift_x(diff)
 
             # If the player gets near the top, shift the world down (-y)
             # if player.rect.top >= 400:
 
 
-            current_position = player.rect.x + current_level.world_shift
+            current_position = player.rect.x + current_level.shift_hori
 
             #if player hits bottom of the screen, reset
             if player.rect.y >= constants.SCREEN_HEIGHT - player.rect.height: #and player.change_y >= 0:
                 falling_sound.play()
-                current_level.shift_world((-current_position + player.rect.x))
+                current_level.world_shift_x(-current_position + player.rect.x)
                 player.rect.y = current_level.player_start_y
                 player.rect.x = current_level.player_start_x
 
