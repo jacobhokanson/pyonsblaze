@@ -105,6 +105,10 @@ def main():
             player.rect.left = 120
             current_level.shift_world(diff)
 
+        # If the player gets near the top, shift the world down (-y)
+        # if player.rect.top >= 400:
+
+
         current_position = player.rect.x + current_level.world_shift
 
         #if player hits bottom of the screen, reset

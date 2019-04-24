@@ -18,6 +18,7 @@ class Level():
 
     # How far this world has been scrolled left/right
     world_shift = 0
+    shift_vert = constants.SCREEN_HEIGHT
     level_limit = -1000
     player_start_y = constants.SCREEN_HEIGHT - 100
     player_start_x = 100
@@ -60,6 +61,11 @@ class Level():
 
         for enemy in self.enemy_list:
             enemy.rect.x += shift_x
+
+    # def shift_vert(self, shift_y):
+    #     """When the user moves up/down and we need to scroll everything: """
+    #
+    #     self.shift_vert += shift_y
 
 # Create platforms for the level
 class Level_01(Level):
