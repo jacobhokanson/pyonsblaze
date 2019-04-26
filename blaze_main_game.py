@@ -57,7 +57,7 @@ def main():
     #Create all the levels
     level_list = []
     level_list.append(levels.Level_03(player))
-    # level_list.append(levels.Level_04(player))
+    level_list.append(levels.Level_04(player))
     # level_list.append((levels.Level_05(player)))
 
     #set the current level
@@ -75,7 +75,7 @@ def main():
     player.rect.x = current_level.player_start_x
     player.rect.y = current_level.player_start_y
     active_sprite_list.add(player)
-    # active_sprite_list.add(end_coin)  # sticks the coin to the screen rather than the world TODO: make coin appear in each level in loadlevel function (see line 55)
+    # active_sprite_list.add(end_coin)  # sticks the coin to the screen rather than the world TODO: make coin appear in each level in loadlevel function
 
     #background music
     pygame.mixer.music.load('game_sounds/bg_music_loop.wav')
@@ -157,15 +157,15 @@ def main():
 
 
             if player.coin_hit:
-            if current_level_no < len(level_list)-1:
-                current_level_no += 1
-                current_level = level_list[current_level_no]
-                player.level = current_level
-                player.rect.y = current_level.player_start_y
-                player.rect.x = current_level.player_start_x
-            else:
-                winner = True
-                break
+                if current_level_no < len(level_list)-1:
+                    current_level_no += 1
+                    current_level = level_list[current_level_no]
+                    player.level = current_level
+                    player.rect.y = current_level.player_start_y
+                    player.rect.x = current_level.player_start_x
+                else:
+                    winner = True
+                    break
 
             #ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
             current_level.draw(screen)

@@ -4,7 +4,49 @@ import platformer_constants as constants
 import platformer_platforms as platforms
 import platformer_interactables as items
 
-# def LevelConstructor():
+class NewLevel():
+    """ Properly designed class structure which will fill fields
+        based on a datalist defined in platformer_levels.py """
+
+    def __init__(self, player, datalist):
+
+        self.platform_list = pygame.sprite.Group()
+        self.interact_list = pygame.sprite.Group()
+        self.player = player
+
+        self.background = pygame.image.load(datalist[0]).convert()
+
+        self.level_limit = datalist[1]  # maybe useless?
+
+        self.create_static_platforms(datalist[2])
+        self.create_moving_platforms(datalist[3])
+
+        self.coin_xy = datalist[4]
+
+        self.player_start = datalist[5]
+
+    def create_static_platforms(self, platlist):
+        for platform in platlist:
+            block = platforms.Platform(platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.player = self.player
+            self.platform_list.add(block)
+
+    def create_moving_platforms(self, movlist):
+        for platform in movlist:
+            block = platforms.MovingPlatform(platform[0])
+            block.rect.x = platform[1]
+            block.rect.y = platform[2]
+            block.boundary_top = platform[3]
+            block.boundary_left = platform[4]
+            block.boundary_right = platform[5]
+            block.boundary_bottom = platform[6]
+            block.change_x = platform[7]
+            block.change_y = platform[8]
+            block.player = self.player
+            block.level = self
+            self.platform_list.add(block)
 
 class Level():
     """ This is a generic super-class used to define a level.
@@ -99,8 +141,8 @@ level_definitions = \
             [platforms.STONE_PLATFORM_MIDDLE, 1190, 280],
             [platforms.STONE_PLATFORM_RIGHT, 1260, 280],
         ],
-        [  # Moving platform list
-
+        [  # Moving platform list follows this structure: [sprite location, x, y, top, left, right, bottom, dx, dy]
+            [platforms.STONE_PLATFORM_MIDDLE, 1350, 280, 0, 1350, 1600, 0, 1, 0]
         ],
         (1200, 300), # Coin_x and Coin_y
         (120, 50)  # Player start x and Player start y
