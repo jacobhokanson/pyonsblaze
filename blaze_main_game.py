@@ -25,6 +25,7 @@ import menu_screens
 
 from platformer_player import Player
 from platformer_interactables import Coin
+from platformer_levels import level_definitions
 
 def main():
 
@@ -52,30 +53,11 @@ def main():
     current_menu_no = 0
     current_menu = menu_screen_list[current_menu_no]
     inMenu = True
-
-
-    #Create all the levels
-    level_list = []
-    level_list.append(levels.Level_03(player))
-    level_list.append(levels.Level_04(player))
-    # level_list.append((levels.Level_05(player)))
-
-    #set the current level
-    current_level_no = 0
-    current_level = level_list[current_level_no]
-    current_level.interact_list.add(end_coin)
-    end_coin.rect.x = current_level.coin_x
-    end_coin.rect.y = current_level.coin_y
     inGame = True
 
     active_sprite_list = pygame.sprite.Group()
-    player.level = current_level
-    player.coin = end_coin
 
-    player.rect.x = current_level.player_start_x
-    player.rect.y = current_level.player_start_y
-    active_sprite_list.add(player)
-    # active_sprite_list.add(end_coin)  # sticks the coin to the screen rather than the world TODO: make coin appear in each level in loadlevel function
+    active_sprite_list.add(player)  # keep here
 
     #background music
     pygame.mixer.music.load('game_sounds/bg_music_loop.wav')
@@ -101,9 +83,8 @@ def main():
                     if event.key == pygame.K_SPACE:
                         inMenu = False
                     current_level_no = 0
-                    current_level = level_list[current_level_no]
-                    player.rect.y = current_level.player_start_y
-                    player.rect.x = current_level.player_start_x
+                    current_level = levels.NewLevel(player, level_definitions[current_level_no])
+                    setupLevel(player, end_coin, current_level)
 
 
         elif inGame:
@@ -118,6 +99,8 @@ def main():
                         player.go_right()
                     if event.key == pygame.K_UP or event.key == pygame.K_SPACE:
                         player.jump()
+                    if event.key == pygame.K_p:
+                        print(str(player.rect.x + -current_level.shift_hori) + ",", player.rect.y)
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT and player.change_x < 0:
@@ -149,20 +132,18 @@ def main():
             current_position = player.rect.x + current_level.shift_hori
 
             #if player hits bottom of the screen, reset
-            if player.rect.y >= constants.SCREEN_HEIGHT - player.rect.height: #and player.change_y >= 0:
-                falling_sound.play()
-                current_level.world_shift_x(-current_position + player.rect.x)
-                player.rect.y = current_level.player_start_y
-                player.rect.x = current_level.player_start_x
+            # if player.rect.y >= constants.SCREEN_HEIGHT - player.rect.height: #and player.change_y >= 0:
+            #     falling_sound.play()
+            #     current_level.world_shift_x(-current_position + player.rect.x)
+            #     player.rect.y = current_level.player_start_y
+            #     player.rect.x = current_level.player_start_x
 
 
             if player.coin_hit:
-                if current_level_no < len(level_list)-1:
+                if current_level_no < len(level_definitions)-1:
                     current_level_no += 1
-                    current_level = level_list[current_level_no]
-                    player.level = current_level
-                    player.rect.y = current_level.player_start_y
-                    player.rect.x = current_level.player_start_x
+                    current_level = levels.NewLevel(player, level_definitions[current_level_no])
+                    setupLevel(player, end_coin, current_level)
                 else:
                     winner = True
                     break
@@ -200,6 +181,13 @@ def main():
 
 
     pygame.quit()
+
+def setupLevel(player, coin, level):
+    level.interact_list.add(coin)
+    player.level = level
+    player.coin = coin
+    player.rect.x, player.rect.y = level.player_start
+    coin.rect.x, coin.rect.y = level.coin_xy
 
 if __name__ == "__main__":
     main()
