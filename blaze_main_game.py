@@ -186,7 +186,7 @@ def setupLevel(player, coin, level):
     level.interact_list.add(coin)
     player.level = level
     player.coin = coin
-    player.rect.left, player.rect.bottom = level.platform_list.sprites()[0].rect.x, level.platform_list.sprites()[0].rect.y
+    player.rect.x, player.rect.y = current_level.player_start
     player.change_y = 0
     coin.rect.x, coin.rect.y = level.coin_xy
 

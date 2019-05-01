@@ -25,7 +25,7 @@ class NewLevel():
 
         self.coin_xy = datalist[4]
 
-        # self.player_start = datalist[5]
+        self.player_start = datalist[5]
 
     def create_static_platforms(self, platlist):
         for platform in platlist:

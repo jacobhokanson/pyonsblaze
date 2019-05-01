@@ -249,4 +249,4 @@ class Player(pygame.sprite.Sprite):
         self.level.world_shift_x(-(self.rect.x + self.level.shift_hori) + self.rect.x)
         self.level.world_shift_y(-(self.rect.y + self.level.shift_vert) + self.rect.y)
 
-        self.rect.x, self.rect.y = self.level.platform_list.sprites()[0].rect.x, self.level.platform_list.sprites()[0].rect.y
+        self.rect.x, self.rect.y = self.level.player_start
