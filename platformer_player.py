@@ -240,3 +240,13 @@ class Player(pygame.sprite.Sprite):
         #called when user lets off the keyboard
         self.change_x = 0
         self.idle = True
+
+    def die(self):
+        self.change_x = 0
+        self.change_y = 0
+        self.idle = True
+
+        self.level.world_shift_x(-(self.rect.x + self.level.shift_hori) + self.rect.x)
+        self.level.world_shift_y(-(self.rect.y + self.level.shift_vert) + self.rect.y)
+
+        self.rect.x, self.rect.y = self.level.platform_list.sprites()[0].rect.x, self.level.platform_list.sprites()[0].rect.y

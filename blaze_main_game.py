@@ -99,7 +99,7 @@ def main():
                         player.go_right()
                     if event.key == pygame.K_UP or event.key == pygame.K_SPACE:
                         player.jump()
-                    if event.key == pygame.K_p:
+                    if event.key == pygame.K_p:  # COORDINATES DEVKEY
                         print(str(player.rect.x + -current_level.shift_hori) + ",", player.rect.y)
 
                 if event.type == pygame.KEYUP:
@@ -126,17 +126,18 @@ def main():
                 current_level.world_shift_x(diff)
 
             # If the player gets near the top, shift the world down (-y)
-            # if player.rect.top >= 400:
+            if player.rect.top <= 100:
+                diff = 100 - player.rect.top
+                player.rect.top = 100
+                current_level.world_shift_y(diff)
 
 
             current_position = player.rect.x + current_level.shift_hori
 
-            #if player hits bottom of the screen, reset
-            # if player.rect.y >= constants.SCREEN_HEIGHT - player.rect.height: #and player.change_y >= 0:
-            #     falling_sound.play()
-            #     current_level.world_shift_x(-current_position + player.rect.x)
-            #     player.rect.y = current_level.player_start_y
-            #     player.rect.x = current_level.player_start_x
+            # if player hits bottom of the screen, reset
+            if player.rect.y >= constants.SCREEN_HEIGHT - player.rect.height: #and player.change_y >= 0:
+                falling_sound.play()
+                player.die()
 
 
             if player.coin_hit:
@@ -164,7 +165,7 @@ def main():
     win_music = pygame.mixer.music.load("game_sounds/winsound.mp3")
 
     fontObj = pygame.font.Font('freesansbold.ttf', 32)
-    textSurfaceObj = fontObj.render("YOU WIN! LOVE YOU!", True, constants.WHITE)
+    textSurfaceObj = fontObj.render("You Won!", True, constants.WHITE)
     textRectObj = textSurfaceObj.get_rect()
     textRectObj.center = (constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)
 
@@ -179,14 +180,14 @@ def main():
             pygame.display.flip()
 
 
-
     pygame.quit()
 
 def setupLevel(player, coin, level):
     level.interact_list.add(coin)
     player.level = level
     player.coin = coin
-    player.rect.x, player.rect.y = level.player_start
+    player.rect.left, player.rect.bottom = level.platform_list.sprites()[0].rect.x, level.platform_list.sprites()[0].rect.y
+    player.change_y = 0
     coin.rect.x, coin.rect.y = level.coin_xy
 
 if __name__ == "__main__":
