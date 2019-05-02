@@ -8,8 +8,24 @@ class NewLevel():
     """ Properly designed class structure which will fill fields
         based on a datalist defined in platformer_levels.py """
 
-    shift_hori = 0
-    shift_vert = 0
+# Level needs to keep track of absolute coordinates in order to properly
+# use vertical scrolling. Death can be based on absolute vertical position
+# or maybe we can just add a death block and define the death areas in
+# level definition. Player start should be removed and we will just start
+# the player on the first block in the platform list. (sort of like a
+# spawn platform, nothing special about it except position in defenition.)
+
+# if thinking about bottom left of screen as absolute reference point,
+# shift_hori is the same as absolute x
+# shift_vert is the same as absolute y minus screen height
+#
+# So maybe should use top left as absolute reference point. because then:
+# shift_hori is absolute x
+# shift_vert is absolute y
+
+# using bottom makes sense because that defines when to die.
+# but you can just do absolute plus screen height = death
+
 
     def __init__(self, player, datalist):
 
@@ -25,7 +41,8 @@ class NewLevel():
 
         self.coin_xy = datalist[4]
 
-        # self.player_start = datalist[5]
+        self.shift_hori = 0
+        self.shift_vert = 0
 
     def create_static_platforms(self, platlist):
         for platform in platlist:
@@ -101,7 +118,8 @@ level_definitions = \
     [  # Level 1:
         "game_images/citydaytimebackground.jpg",  # Background image path 0
         [  # Static platform list 1
-            [platforms.STONE_SINGLE, 130, 200],
+            [platforms.STONE_SINGLE, 130, 500],
+
             [platforms.GRASS_LEFT, 500, 500],
             [platforms.GRASS_MIDDLE, 570, 500],
             [platforms.GRASS_RIGHT, 640, 500],
@@ -119,12 +137,12 @@ level_definitions = \
             # put enemies here
         ],
         (1780, 91), # Coin_x and Coin_y 4
-        (120, 450)  # Player start x and Player start y 5
     ],  # End level 1
     [  # Level 2:
         "game_images/background_02.png",  # Background image path 0
         [  # static platform list 1
             [platforms.STONE_PLATFORM_LEFT, 100, 550],
+
             [platforms.STONE_PLATFORM_MIDDLE, 170, 550],
             [platforms.STONE_PLATFORM_RIGHT, 240, 550],
             [platforms.STONE_PLATFORM_LEFT, 500, 550],
@@ -144,12 +162,12 @@ level_definitions = \
             # put enemies here
         ],
         (1750, 100), # Coin_x and Coin_y 4
-        (120, 500)  # Player start x and Player start y 5
     ],  # End level 2
     [  # Level 3:
         "game_images/mountain_bg.png",  # Background image path
         [
             [platforms.GRASS_LEFT, 0, constants.SCREEN_HEIGHT - 70],
+
             [platforms.GRASS_MIDDLE, 70, constants.SCREEN_HEIGHT - 70],
             [platforms.GRASS_MIDDLE, 140, constants.SCREEN_HEIGHT - 70],
             [platforms.GRASS_MIDDLE, 210, constants.SCREEN_HEIGHT - 70],
@@ -208,11 +226,12 @@ level_definitions = \
             # put enemies here
         ],
         (3500, 400), # Coin_x and Coin_y
-        (120, 500)  # Player start x and Player start y
     ],  #End level 3
     [  # Level 4:
         "game_images/city_night_bg.jpg",  # Background image path 0
         [  # Static platform list 1
+            [platforms.STONE_TOP, 138, constants.SCREEN_HEIGHT - 420],
+
             [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 70],
             [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 140],
             [platforms.STONE_MIDDLE, -68, constants.SCREEN_HEIGHT - 210],
@@ -241,7 +260,6 @@ level_definitions = \
             [platforms.STONE_MIDDLE, 138, constants.SCREEN_HEIGHT - 210],
             [platforms.STONE_MIDDLE, 138, constants.SCREEN_HEIGHT - 280],
             [platforms.STONE_MIDDLE, 138, constants.SCREEN_HEIGHT - 350],
-            [platforms.STONE_TOP, 138, constants.SCREEN_HEIGHT - 420],
 
             [platforms.STONE_MIDDLE, 206, constants.SCREEN_HEIGHT - 70],
             [platforms.STONE_MIDDLE, 206, constants.SCREEN_HEIGHT - 140],
@@ -340,11 +358,12 @@ level_definitions = \
             # put enemies here
         ],
         (3560, 400), # Coin_x and Coin_y 4
-        (120, 50)  # Player start x and Player start y 5
     ],  #End level 4
     [  # Level 5:
         "game_images/castle.jpg",  # Background image path 0
         [  # Static platform list 1
+            [platforms.CARPET, 70, constants.SCREEN_HEIGHT - 70],
+
             [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 70],
             [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 140],
             [platforms.STONE_MIDDLE, -136, constants.SCREEN_HEIGHT - 210],
@@ -364,7 +383,6 @@ level_definitions = \
             [platforms.STONE_TOP, -68, constants.SCREEN_HEIGHT - 560],
 
             [platforms.CARPET, 0, constants.SCREEN_HEIGHT - 70],
-            [platforms.CARPET, 70, constants.SCREEN_HEIGHT - 70],
             [platforms.CARPET, 140, constants.SCREEN_HEIGHT - 70],
             [platforms.CARPET, 210, constants.SCREEN_HEIGHT - 70],
             [platforms.CARPET, 280, constants.SCREEN_HEIGHT - 70],
@@ -449,6 +467,5 @@ level_definitions = \
             # put enemies here
         ],
         (5150, 350), # Coin_x and Coin_y 4
-        (120, 450)  # Player start x and Player start y 5
     ],  # End level 5
 ]

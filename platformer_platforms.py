@@ -54,16 +54,24 @@ class Platform(pygame.sprite.Sprite):
 
 class MovingPlatform(Platform):
     """ This is a fancier platform that can actually move. """
-    change_x = 0
-    change_y = 0
+    def __init__(self, list):
+        super().__init__(list)
 
-    boundary_top = 0
-    boundary_bottom = 0
-    boundary_left = 0
-    boundary_right = 0
+        self.change_x = 0
+        self.change_y = 0
 
-    level = None
-    player = None
+        self.boundary_top = 0
+        self.boundary_bottom = 0
+        self.boundary_left = 0
+        self.boundary_right = 0
+
+        self.level = None
+        self.player = None
+
+        self.track_start = self.rect.center
+        self.track_end = (0, 0)
+
+        self.track = None
 
     def update(self):
         """ Move the platform.
@@ -107,7 +115,8 @@ class MovingPlatform(Platform):
 
         # Check the boundaries and see if we need to reverse
         # direction.
-        if self.rect.bottom > self.boundary_bottom or self.rect.top < self.boundary_top:
+        cur_pos = self.rect.bottom - self.level.shift_vert
+        if cur_pos > self.boundary_bottom or cur_pos < self.boundary_top:
             self.change_y *= -1
 
         cur_pos = self.rect.x - self.level.shift_hori

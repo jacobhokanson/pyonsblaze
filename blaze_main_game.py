@@ -101,6 +101,16 @@ def main():
                         player.jump()
                     if event.key == pygame.K_p:  # COORDINATES DEVKEY
                         print(str(player.rect.x + -current_level.shift_hori) + ",", player.rect.y)
+                    if event.key == pygame.K_F5:  # RESET DEVKEY
+                        player.die()
+                    if event.key == pygame.K_EQUALS:
+                            if current_level_no < len(level_definitions)-1:
+                                current_level_no += 1
+                                current_level = levels.NewLevel(player, level_definitions[current_level_no])
+                                setupLevel(player, end_coin, current_level)
+                            else:
+                                winner = True
+                                break
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT and player.change_x < 0:
@@ -131,11 +141,14 @@ def main():
                 player.rect.top = 100
                 current_level.world_shift_y(diff)
 
-
-            current_position = player.rect.x + current_level.shift_hori
+            if player.rect.bottom >= 500 and current_level.shift_vert >= 0:
+                diff = player.rect.bottom - 500
+                player.rect.bottom = 500
+                current_level.world_shift_y(-diff)
+                
 
             # if player hits bottom of the screen, reset
-            if player.rect.y >= constants.SCREEN_HEIGHT - player.rect.height: #and player.change_y >= 0:
+            if player.rect.y >= (constants.SCREEN_HEIGHT + current_level.shift_vert) - player.rect.height: #and player.change_y >= 0:
                 falling_sound.play()
                 player.die()
 
