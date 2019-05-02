@@ -49,7 +49,6 @@ class NewLevel():
             block = platforms.Platform(platform[0])
             block.rect.x = platform[1]
             block.rect.y = platform[2]
-            block.player = self.player
             self.platform_list.add(block)
 
     def create_moving_platforms(self, movlist):
@@ -66,6 +65,12 @@ class NewLevel():
             block.player = self.player
             block.level = self
             self.platform_list.add(block)
+            # bound1 = platforms.MovingMarker()
+            # bound1.rect.x, bound1.rect.y = block.rect.x + 23, block.rect.y + 8
+            # self.interact_list.add(bound1)
+            # bound1 = platforms.MovingMarker()
+            # bound1.rect.x, bound1.rect.y = block.boundary_right + 23, block.boundary_bottom + 8
+            # self.interact_list.add(bound1)
 
     def create_interactables(self, interlist):
         for object in interlist:
@@ -138,6 +143,7 @@ level_definitions = \
         ],
         (1780, 91), # Coin_x and Coin_y 4
     ],  # End level 1
+
     [  # Level 2:
         "game_images/background_02.png",  # Background image path 0
         [  # static platform list 1
@@ -156,13 +162,14 @@ level_definitions = \
             [platforms.STONE_PLATFORM_RIGHT, 1260, 280],
         ],
         [  # Moving platform list 2
-            [platforms.STONE_SINGLE, 1500, 300, 100, 0, 0, 550, 0, -1],
+            [platforms.STONE_SINGLE, 1500, 300, 250, 0, 0, 550, 0, -1],
         ],
         [  # Interactables list 3
             # put enemies here
         ],
         (1750, 100), # Coin_x and Coin_y 4
     ],  # End level 2
+
     [  # Level 3:
         "game_images/mountain_bg.png",  # Background image path
         [
@@ -227,6 +234,7 @@ level_definitions = \
         ],
         (3500, 400), # Coin_x and Coin_y
     ],  #End level 3
+
     [  # Level 4:
         "game_images/city_night_bg.jpg",  # Background image path 0
         [  # Static platform list 1
@@ -359,6 +367,7 @@ level_definitions = \
         ],
         (3560, 400), # Coin_x and Coin_y 4
     ],  #End level 4
+
     [  # Level 5:
         "game_images/castle.jpg",  # Background image path 0
         [  # Static platform list 1

@@ -3,8 +3,6 @@ Module for managing platforms.
 """
 import pygame
 
-from platformer_spritesheet_functions import SpriteSheet
-
 # These constants define our platform types:
 #   Name of file
 #   X location of sprite
@@ -31,7 +29,11 @@ PURPLE_MIDDLE         = (72, 433, 68, 69)
 PURPLE_SINGLE         = (144, 648, 70, 70)
 PURPLE_SINGLE_SMALL   = (143, 144, 70, 40)
 
+TRACK                 = (288, 766, 23, 23)
+
 CARPET = (504, 0, 70, 70)
+
+sprite_sheet = None
 
 class Platform(pygame.sprite.Sprite):
     """ Platform the user can jump on """
@@ -42,7 +44,6 @@ class Platform(pygame.sprite.Sprite):
             code. """
         pygame.sprite.Sprite.__init__(self)
 
-        sprite_sheet = SpriteSheet("game_images/tiles_spritesheet.png")
         # Grab the image for this platform
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
                                             sprite_sheet_data[1],
@@ -67,11 +68,6 @@ class MovingPlatform(Platform):
 
         self.level = None
         self.player = None
-
-        self.track_start = self.rect.center
-        self.track_end = (0, 0)
-
-        self.track = None
 
     def update(self):
         """ Move the platform.
@@ -122,3 +118,8 @@ class MovingPlatform(Platform):
         cur_pos = self.rect.x - self.level.shift_hori
         if cur_pos < self.boundary_left or cur_pos > self.boundary_right:
             self.change_x *= -1
+
+# class MovingMarker(Platform):
+#
+#     def __init__(self):
+#         super().__init__(TRACK)

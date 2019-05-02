@@ -1,7 +1,6 @@
 #used to pull individual sprites from the spritesheets
 
 import pygame
-import platformer_constants as constants
 
 class SpriteSheet(object):
     #class used to pull individual images out of spritesheet
@@ -17,8 +16,5 @@ class SpriteSheet(object):
 
         #copy the sprite from the large sheet onto the smaller image
         image.blit(self.sprite_sheet, (0, 0), (x, y, width, height))
-
-        #assuming black works as the transparent color
-        # image.set_colorkey(constants.PINK_KEY)
 
         return image

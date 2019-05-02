@@ -26,8 +26,8 @@ class Coin(pygame.sprite.Sprite):
 
     def update(self):
 
-        if self.coin_frames.index(self.image) > 0:
+        if random.randint(60, 100) == 99:
             self.image = self.coin_frames[(self.coin_frames.index(self.image) + 1) % len(self.coin_frames)]
 
-        if random.randint(0, 300) == 99:
+        if self.coin_frames.index(self.image) > 0:
             self.image = self.coin_frames[(self.coin_frames.index(self.image) + 1) % len(self.coin_frames)]

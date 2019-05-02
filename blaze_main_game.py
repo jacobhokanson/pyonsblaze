@@ -21,11 +21,13 @@
 import pygame
 import platformer_constants as constants
 import platformer_levels as levels
+import platformer_platforms as platforms
 import menu_screens
 
 from platformer_player import Player
 from platformer_interactables import Coin
 from platformer_levels import level_definitions
+from platformer_spritesheet_functions import SpriteSheet
 
 def main():
 
@@ -37,6 +39,9 @@ def main():
     screen = pygame.display.set_mode(size)
 
     pygame.display.set_caption("ZcrollBois")
+
+    # Create the spritesheet
+    platforms.sprite_sheet = SpriteSheet("game_images/tiles_spritesheet.png")
 
     #Create the player
     player = Player()
