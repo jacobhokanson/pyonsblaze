@@ -145,7 +145,7 @@ def main():
                 diff = player.rect.bottom - 500
                 player.rect.bottom = 500
                 current_level.world_shift_y(-diff)
-                
+
 
             # if player hits bottom of the screen, reset
             if player.rect.y >= (constants.SCREEN_HEIGHT + current_level.shift_vert) - player.rect.height: #and player.change_y >= 0:
@@ -199,7 +199,7 @@ def setupLevel(player, coin, level):
     level.interact_list.add(coin)
     player.level = level
     player.coin = coin
-    player.rect.x, player.rect.y = current_level.player_start
+    player.rect.left, player.rect.bottom = level.platform_list.sprites()[0].rect.x, level.platform_list.sprites()[0].rect.y  # does
     player.change_y = 0
     coin.rect.x, coin.rect.y = level.coin_xy
 
