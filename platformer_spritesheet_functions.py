@@ -1,4 +1,4 @@
-#used to pull individual sprites from the spritesheets
+"""Directly from PAG"""
 
 import pygame
 

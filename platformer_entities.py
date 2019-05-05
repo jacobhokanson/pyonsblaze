@@ -1,3 +1,5 @@
+"""Entity abstract class designed and implemented by Jacob Hokanson"""
+
 import pygame
 from platformer_platforms import MovingPlatform
 import platformer_constants as constants

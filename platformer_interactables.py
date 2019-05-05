@@ -1,8 +1,11 @@
+"""Coin to end level class designed by Jacob Hokanson based on pygame sprite"""
+
 from platformer_spritesheet_functions import SpriteSheet
 import random, pygame
 
 class Coin(pygame.sprite.Sprite):
-    """A pickup that ends the current level when collected."""
+    # A pickup that ends the current level when collected. #
+    # Could do other things, effect is implemented by Player #
 
     def __init__(self):
 

@@ -1,6 +1,3 @@
-"""
-Module for managing platforms.
-"""
 import pygame
 
 # These constants define our platform types:
@@ -36,12 +33,9 @@ CARPET                = (504, 0, 70, 70)
 sprite_sheet = None
 
 class Platform(pygame.sprite.Sprite):
-    """ Platform the user can jump on """
+    # Platform the user can jump on #
 
     def __init__(self, sprite_sheet_data):
-        """ Platform constructor. Assumes constructed with user passing in
-            a tuple of 4 numbers like what's defined at the top of this
-            code. """
         super().__init__()
 
         # Grab the image for this platform
@@ -54,7 +48,7 @@ class Platform(pygame.sprite.Sprite):
 
 
 class MovingPlatform(Platform):
-    """ This is a fancier platform that can actually move. """
+    # This is a fancier platform that can actually move. #
     def __init__(self, list):
         super().__init__(list)
 
@@ -70,12 +64,12 @@ class MovingPlatform(Platform):
         self.player = None
 
     def update(self):
-        """ Move the platform.
-            If the player is in the way, it will shove the player
-            out of the way. This does NOT handle what happens if a
-            platform shoves a player into another object. Make sure
-            moving platforms have clearance to push the player around
-            or add code to handle what happens if they don't. """
+        # Move the platform.
+        # If the player is in the way, it will shove the player
+        # out of the way. This does NOT handle what happens if a
+        # platform shoves a player into another object. Make sure
+        # moving platforms have clearance to push the player around
+        # or add code to handle what happens if they don't.
 
         # Move left/right
         self.rect.x += self.change_x

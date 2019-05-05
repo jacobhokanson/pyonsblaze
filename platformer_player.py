@@ -1,5 +1,5 @@
-#holds Player class, which represents the user-controlled sprite on the screen
-#76, 100
+
+
 import pygame
 from platformer_spritesheet_functions import SpriteSheet
 from platformer_entities import Entity
@@ -138,6 +138,7 @@ class Player(pygame.sprite.Sprite, Entity):
                 self.die()
 
     def die(self):
+        """Player die method designed and implemented by Jacob Hokanson"""
         self.change_x = 0
         self.change_y = 0
         self.idle = True

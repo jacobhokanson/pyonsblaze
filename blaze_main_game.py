@@ -1,13 +1,13 @@
-#Main class for the side scroller
+""" The original game is hosted at http://programarcadegames.com/python_examples/en/sprite_sheets/
+    with all source code available for comparison. This version will be referred to as PAG
+    throughout the creditation comments which will all be multi-line strings like this one. """
 
-#Credit to : http://programarcasegames.com/python_examples/sprite_sheets/ for the skeleton
+""" Game art from Kenney.nl: http://opengameart.org/content/platformer-art-deluxe
+                                Background credits:
+    'https://www.freepik.com/free-photos-vectors/background' - vectorpocket, brgfx
+    'https://www.freepik.com/free-photos-vectors/business'   - katemangostar """
 
-#Game art from Kenney.nl: http://opengameart.org/content/platformer-art-deluxe
-#<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by vectorpocket - www.freepik.com</a>
-#<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a>
-#<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by vectorpocket - www.freepik.com</a>
-#<a href="https://www.freepik.com/free-photos-vectors/business">Business vector created by katemangostar - www.freepik.com</a>
-#<a href="https://www.freepik.com/free-photos-vectors/background">Background vector created by brgfx - www.freepik.com</a>
+""" Background music by Mark Libby """
 
 
 
@@ -22,7 +22,6 @@ import pygame
 import platformer_constants as constants
 import platformer_levels as levels
 import platformer_platforms as platforms
-# import platformer_enemy as enemies
 import menu_screens
 
 from platformer_player import Player
@@ -66,7 +65,7 @@ def main():
     active_sprite_list.add(player)  # keep here  **WHY?**
 
     #background music
-    pygame.mixer.music.load('game_sounds/bg_music_loop.wav')
+    pygame.mixer.music.load('game_sounds/soundtrack.wav')
     pygame.mixer.music.play(-1, 0.0)
 
     falling_sound = pygame.mixer.Sound("game_sounds/falling.wav")
@@ -118,7 +117,6 @@ def main():
                                 setupLevel(player, end_coin, current_level)
                             else:
                                 winner = True
-                                break
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_LEFT and player.change_x < 0:
@@ -169,31 +167,28 @@ def main():
             active_sprite_list.draw(screen)
             #ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
 
+            if winner is True:
+                pygame.mixer.music.stop()
+                win_music = pygame.mixer.music.load("game_sounds/winsound.mp3")
+                pygame.mixer.music.play(1)
+
+                fontObj = pygame.font.Font('freesansbold.ttf', 32)
+                textSurfaceObj = fontObj.render("You Won!", True, constants.WHITE)
+                textRectObj = textSurfaceObj.get_rect()
+                textRectObj.center = (constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)
+                while not done:
+                    for event in pygame.event.get():#User did something
+                        if event.type == pygame.QUIT: #if user clicked close
+                            done = True # Flag that we are done so loop is exited
+                    screen.fill(constants.BLACK)
+                    screen.blit(textSurfaceObj, textRectObj)
+                    pygame.display.flip()
+
         #limit to 60 frames per second
         clock.tick(60)
 
         #go ahead and update the screen with what we've drawn
         pygame.display.flip()
-    # done = False
-    pygame.mixer.music.stop()
-
-    win_music = pygame.mixer.music.load("game_sounds/winsound.mp3")
-
-    fontObj = pygame.font.Font('freesansbold.ttf', 32)
-    textSurfaceObj = fontObj.render("You Won!", True, constants.WHITE)
-    textRectObj = textSurfaceObj.get_rect()
-    textRectObj.center = (constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)
-
-    if winner is True:
-        pygame.mixer.music.play(1)
-        while not done:
-            for event in pygame.event.get():#User did something
-                if event.type == pygame.QUIT: #if user clicked close
-                    done = True # Flag that we are done so loop is exited
-            screen.fill(constants.BLACK)
-            screen.blit(textSurfaceObj, textRectObj)
-            pygame.display.flip()
-
 
     pygame.quit()
 

@@ -1,3 +1,5 @@
+""" Enemy class by Jacob Hokanson, based on PAG Player class """
+
 from platformer_spritesheet_functions import SpriteSheet
 from platformer_entities import Entity
 import pygame, random
@@ -5,11 +7,6 @@ import pygame, random
 sprite_sheet = None
 
 class Enemy(pygame.sprite.Sprite, Entity):
-    # """ Superclass for all enemies.
-    #     Maybe subclass into different kinds of enemies based on behavior
-    #     e.g. walk, fly, how they are killed"""
-
-    """Enemy class for objects"""
 
     def __init__(self):
         # Call parent constructors
