@@ -2,7 +2,7 @@ import pygame
 
 import platformer_constants as constants
 import platformer_platforms as platforms
-import platformer_interactables as items
+from platformer_enemy import Enemy
 
 class NewLevel():
     """ Properly designed class structure which will fill fields
@@ -30,14 +30,14 @@ class NewLevel():
     def __init__(self, player, datalist):
 
         self.platform_list = pygame.sprite.Group()
-        self.interact_list = pygame.sprite.Group()
+        self.enemy_list = pygame.sprite.Group()
         self.player = player
 
         self.background = pygame.image.load(datalist[0]).convert()
 
         self.create_static_platforms(datalist[1])
         self.create_moving_platforms(datalist[2])
-        self.create_interactables(datalist[3])
+        self.create_enemies(datalist[3])
 
         self.coin_xy = datalist[4]
 
@@ -72,14 +72,19 @@ class NewLevel():
             # bound1.rect.x, bound1.rect.y = block.boundary_right + 23, block.boundary_bottom + 8
             # self.interact_list.add(bound1)
 
-    def create_interactables(self, interlist):
-        for object in interlist:
-            continue
+    def create_enemies(self, enlist):
+        for en in enlist:
+            enemy = Enemy()
+            enemy.rect.x = en[0]
+            enemy.rect.y = en[1]
+            enemy.player = self.player
+            enemy.level = self
+            self.enemy_list.add(enemy)
 
     def update(self):
         """ Update everything in this level."""
         self.platform_list.update()
-        self.interact_list.update()
+        self.enemy_list.update()
 
     def draw(self, screen):
         """ Draw everything on this level. """
@@ -92,7 +97,7 @@ class NewLevel():
 
         # Draw all the sprite lists that we have
         self.platform_list.draw(screen)
-        self.interact_list.draw(screen)
+        self.enemy_list.draw(screen)
 
     def world_shift_x(self, shift_x):
         """ When the user moves left/right and we need to scroll everything: """
@@ -104,7 +109,7 @@ class NewLevel():
         for platform in self.platform_list:
             platform.rect.x += shift_x
 
-        for enemy in self.interact_list:
+        for enemy in self.enemy_list:
             enemy.rect.x += shift_x
 
     def world_shift_y(self, shift_y):
@@ -114,7 +119,7 @@ class NewLevel():
         for platform in self.platform_list:
             platform.rect.y += shift_y
 
-        for enemy in self.interact_list:
+        for enemy in self.enemy_list:
             enemy.rect.y += shift_y
 
 # Definition will follow this format: [background file path, static platform list, moving platform list, (coin_x, coin_y), (player_start_x, player_start_y)]
@@ -140,6 +145,7 @@ level_definitions = \
         ],
         [  # Interactable list 3
             # put enemies here
+            [560, 400]
         ],
         (1780, 91), # Coin_x and Coin_y 4
     ],  # End level 1

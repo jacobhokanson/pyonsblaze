@@ -31,7 +31,7 @@ PURPLE_SINGLE_SMALL   = (143, 144, 70, 40)
 
 TRACK                 = (288, 766, 23, 23)
 
-CARPET = (504, 0, 70, 70)
+CARPET                = (504, 0, 70, 70)
 
 sprite_sheet = None
 
@@ -42,7 +42,7 @@ class Platform(pygame.sprite.Sprite):
         """ Platform constructor. Assumes constructed with user passing in
             a tuple of 4 numbers like what's defined at the top of this
             code. """
-        pygame.sprite.Sprite.__init__(self)
+        super().__init__()
 
         # Grab the image for this platform
         self.image = sprite_sheet.get_image(sprite_sheet_data[0],
