@@ -16,7 +16,7 @@
     https://freesound.org/people/Tuudurt/sounds/275104/ """
 
 
-import pygame, thorpy
+import pygame
 import platformer_constants as constants
 import platformer_levels as levels
 import platformer_platforms as platforms
@@ -26,14 +26,8 @@ import time
 from platformer_player import Player
 from platformer_interactables import Coin
 from platformer_levels import level_definitions
-<<<<<<< HEAD
 from platformer_spritesheet_functions import SpriteSheet
-=======
 from menu_screens import menu_definitions
-from platformer_spritesheet_functions import SpriteSheet
-
-#current_menu = None
->>>>>>> calebMenus
 
 def main():
 
@@ -46,13 +40,9 @@ def main():
 
     pygame.display.set_caption("ZcrollBois")
 
-<<<<<<< HEAD
     # Create the spritesheet
     platforms.sprite_sheet = SpriteSheet("game_images/tiles_spritesheet.png")
-
-=======
     menu_screens.sprite_sheet = SpriteSheet("game_images/tiles_spritesheet.png")
->>>>>>> calebMenus
     #Create the player
     player = Player()
     winner = False
@@ -123,7 +113,7 @@ def main():
                 inMenu = False
                 current_level = levels.NewLevel(player, level_definitions[current_level_no])
                 setupLevel(player, end_coin, current_level)
-                state = 1
+                state = 0
             elif state != previousState:
                 previousState = state
                 current_menu = menu_switch(state)
@@ -220,44 +210,22 @@ def main():
                 textSurfaceObj = fontObj.render("You Won!", True, constants.WHITE)
                 textRectObj = textSurfaceObj.get_rect()
                 textRectObj.center = (constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)
-                while not done:
-                    for event in pygame.event.get():#User did something
-                        if event.type == pygame.QUIT: #if user clicked close
-                            done = True # Flag that we are done so loop is exited
-                    screen.fill(constants.BLACK)
-                    screen.blit(textSurfaceObj, textRectObj)
-                    pygame.display.flip()
+                # while not done:
+                for event in pygame.event.get():#User did something
+                    if event.type == pygame.QUIT: #if user clicked close
+                        done = True # Flag that we are done so loop is exited
+                screen.fill(constants.BLACK)
+                screen.blit(textSurfaceObj, textRectObj)
+                pygame.display.flip()
+                time.sleep(5)
+                inMenu = True
 
         #limit to 60 frames per second
         clock.tick(60)
 
         #go ahead and update the screen with what we've drawn
         pygame.display.flip()
-<<<<<<< HEAD
-=======
-    # done = False
-    pygame.mixer.music.stop()
 
-    win_music = pygame.mixer.music.load("game_sounds/winsound.mp3")
-
-    fontObj = pygame.font.Font('freesansbold.ttf', 32)
-    textSurfaceObj = fontObj.render("You Won!", True, constants.WHITE)
-    textRectObj = textSurfaceObj.get_rect()
-    textRectObj.center = (constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)
-
-    if winner is True:
-        pygame.mixer.music.play(1)
-        while not done:
-            for event in pygame.event.get():#User did something
-                if event.type == pygame.QUIT: #if user clicked close
-                    done = True # Flag that we are done so loop is exited
-            screen.fill(constants.BLACK)
-            screen.blit(textSurfaceObj, textRectObj)
-            pygame.display.flip()
-            time.sleep(5)
-            break
-
->>>>>>> calebMenus
 
     pygame.quit()
 
@@ -272,9 +240,9 @@ def setupLevel(player, coin, level):
 def menu_switch(state):
     if state == -1:
         pygame.quit()
+        exit()
     else:
         return menu_screens.menu(menu_definitions[state])
-
 
 
 if __name__ == "__main__":
