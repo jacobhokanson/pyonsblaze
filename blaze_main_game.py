@@ -7,8 +7,6 @@
     'https://www.freepik.com/free-photos-vectors/background' - vectorpocket, brgfx
     'https://www.freepik.com/free-photos-vectors/business'   - katemangostar """
 
-""" Background music by Mark Libby """
-
 
 
 """                     Sounds
