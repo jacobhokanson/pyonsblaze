@@ -16,3 +16,4 @@ Caleb Magee project contributions:
     Implemented custom level design for user enjoyment
     Added player death and level reset
     Added background music and jump sound effect upon player action
+    Added start menu and level select GUI
