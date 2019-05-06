@@ -8,3 +8,11 @@ Jacob Hokanson project contributions:
     Redesigned Level class as NewLevel
     Optimized spritesheet loading for Platforms
     Optimized game initialization by loading in only the current level
+    
+Caleb Magee project contributions:
+    
+    Implemented pygame module into program
+    Built initial framework based on tutorial
+    Implemented custom level design for user enjoyment
+    Added player death and level reset
+    Added background music and jump sound effect upon player action
