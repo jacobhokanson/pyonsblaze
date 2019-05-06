@@ -1,3 +1,5 @@
+""" Platform directly from PAG with slight modifications to MovingPlatform subclass """
+
 import pygame
 
 # These constants define our platform types:

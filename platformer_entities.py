@@ -1,4 +1,4 @@
-"""Entity abstract class designed and implemented by Jacob Hokanson"""
+""" Entity abstract class by Jacob Hokanson with modified methods based on PAG """
 
 import pygame
 from platformer_platforms import MovingPlatform

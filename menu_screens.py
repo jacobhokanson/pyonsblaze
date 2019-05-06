@@ -1,3 +1,5 @@
+""" Menu Screen class design and use by Caleb Magee """
+
 import pygame
 import platformer_constants as constants
 from platformer_spritesheet_functions import SpriteSheet

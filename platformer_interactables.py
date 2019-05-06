@@ -1,4 +1,4 @@
-"""Coin to end level class designed by Jacob Hokanson based on pygame sprite"""
+"""Coin to end level class designed by Jacob Hokanson & Caleb Magee based on pygame sprite"""
 
 from platformer_spritesheet_functions import SpriteSheet
 import random, pygame

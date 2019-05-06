@@ -1,4 +1,4 @@
-
+""" Player class based on PAG, modified by Jacob Hokanson and Caleb Magee """
 
 import pygame
 from platformer_spritesheet_functions import SpriteSheet
@@ -138,7 +138,7 @@ class Player(pygame.sprite.Sprite, Entity):
                 self.die()
 
     def die(self):
-        """Player die method designed and implemented by Jacob Hokanson"""
+        """Player die method by Caleb Magee & Jacob Hokanson"""
         self.change_x = 0
         self.change_y = 0
         self.idle = True

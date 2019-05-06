@@ -11,11 +11,11 @@
 
 
 
-#Sounds
-#https://jalastram.itch.io/8-bit-jump-sound-effects/download/eyJleHBpcmVzIjoxNTU0Nzc2NDA3LCJpZCI6NTY1MjJ9.flChJi4ePYJyKySVgpLzZ7BL8yM%3d
-#https://freesound.org/people/FoolBoyMedia/sounds/264295/
-#https://freesound.org/people/plasterbrain/sounds/395443/
-#https://freesound.org/people/Tuudurt/sounds/275104/
+"""                     Sounds
+    https://jalastram.itch.io/8-bit-jump-sound-effects/download/eyJleHBpcmVzIjoxNTU0Nzc2NDA3LCJpZCI6NTY1MjJ9.flChJi4ePYJyKySVgpLzZ7BL8yM%3d
+    https://freesound.org/people/FoolBoyMedia/sounds/264295/
+    https://freesound.org/people/plasterbrain/sounds/395443/
+    https://freesound.org/people/Tuudurt/sounds/275104/ """
 
 
 import pygame

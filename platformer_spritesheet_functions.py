@@ -1,4 +1,4 @@
-"""Directly from PAG"""
+""" Directly from PAG """
 
 import pygame
 
