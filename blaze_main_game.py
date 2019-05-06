@@ -158,7 +158,6 @@ def main():
                     setupLevel(player, end_coin, current_level)
                 else:
                     winner = True
-                    break
 
             #ALL CODE TO DRAW SHOULD GO BELOW THIS COMMENT
             current_level.draw(screen)

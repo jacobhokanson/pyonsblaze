@@ -131,7 +131,6 @@ level_definitions = \
         ),
         (  # Interactable list 3
             # put enemies here
-            (560, 400),
         ),
         (1780, 91), # Coin_x and Coin_y 4
     ),  # End level 1
@@ -466,6 +465,7 @@ level_definitions = \
         ),
         (  # Interactable list 3
             # put enemies here
+            (4770, 400),
         ),
         (5150, 350), # Coin_x and Coin_y 4
     ),  # End level 5
