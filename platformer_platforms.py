@@ -33,6 +33,10 @@ PURPLE_SINGLE_SMALL   = (143, 144, 70, 40)
 
 CARPET = (504, 0, 70, 70)
 
+BOX = (0, 865, 70, 70)
+BOXX = (0, 793, 70, 70)
+
+
 class Platform(pygame.sprite.Sprite):
     """ Platform the user can jump on """
 
