@@ -34,6 +34,10 @@ CARPET                = (504, 0, 70, 70)
 
 sprite_sheet = None
 
+BOX = (0, 865, 70, 70)
+BOXX = (0, 793, 70, 70)
+
+
 class Platform(pygame.sprite.Sprite):
     # Platform the user can jump on #
 

@@ -16,16 +16,24 @@
     https://freesound.org/people/Tuudurt/sounds/275104/ """
 
 
-import pygame
+import pygame, thorpy
 import platformer_constants as constants
 import platformer_levels as levels
 import platformer_platforms as platforms
 import menu_screens
+import time
 
 from platformer_player import Player
 from platformer_interactables import Coin
 from platformer_levels import level_definitions
+<<<<<<< HEAD
 from platformer_spritesheet_functions import SpriteSheet
+=======
+from menu_screens import menu_definitions
+from platformer_spritesheet_functions import SpriteSheet
+
+#current_menu = None
+>>>>>>> calebMenus
 
 def main():
 
@@ -33,14 +41,18 @@ def main():
     pygame.init()
 
     #set height/width of the screen
-    size = [constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT]
+    size = (constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT)
     screen = pygame.display.set_mode(size)
 
     pygame.display.set_caption("ZcrollBois")
 
+<<<<<<< HEAD
     # Create the spritesheet
     platforms.sprite_sheet = SpriteSheet("game_images/tiles_spritesheet.png")
 
+=======
+    menu_screens.sprite_sheet = SpriteSheet("game_images/tiles_spritesheet.png")
+>>>>>>> calebMenus
     #Create the player
     player = Player()
     winner = False
@@ -49,12 +61,13 @@ def main():
     end_coin = Coin()
 
     #Create Menu Screens
-    menu_screen_list = []
-    menu_screen_list.append(menu_screens.homeMenu())
+    #menu_screen_list = []
+    #menu_screen_list.append(menu_screens.homeMenu("Title"))
+    #menu = menu_screens.startMenuScreen()
 
     #start current menu at the first one
     current_menu_no = 0
-    current_menu = menu_screen_list[current_menu_no]
+    #current_menu = menu_screen_list[current_menu_no]
     inMenu = True
     inGame = True
 
@@ -73,21 +86,54 @@ def main():
 
     #used to manage how fast the screen updates
     clock = pygame.time.Clock()
+    state = 0
+    current_level_no = 0
+    previousState = 0
+    current_menu = menu_switch(state)
+    #current_menu = menu_screens.menu(menu_definitions[0])
+
 
     #--------------Main Program Loop--------------
+    #try:
     while not done:
         if inMenu:
-            current_menu.update()
-            current_menu.draw(screen)
+            #print("State=", state)
+
+            #current_menu.update()
+            #current_menu.draw(screen)
+
             for event in pygame.event.get():#User did something
                 if event.type == pygame.QUIT: #if user clicked close
                     done = True # Flag that we are done so loop is exited
                 if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_F1:
+                        current_menu = menu_switch(0)
+                    if event.key == pygame.K_F2:
+                        current_menu = menu_switch(1)
                     if event.key == pygame.K_SPACE:
                         inMenu = False
+                        #menu = None
+
                     current_level_no = 0
                     current_level = levels.NewLevel(player, level_definitions[current_level_no])
                     setupLevel(player, end_coin, current_level)
+
+            state, current_level_no = current_menu.update(state, current_level_no)
+            if state == 3:
+                inMenu = False
+                current_level = levels.NewLevel(player, level_definitions[current_level_no])
+                setupLevel(player, end_coin, current_level)
+                state = 1
+            elif state != previousState:
+                previousState = state
+                current_menu = menu_switch(state)
+
+            #print("State:", state)
+            #ALL CODE TO DRAW MENUS MUST GO BELOW THIS LINE
+            if inMenu:
+                current_menu.draw(screen)
+            # ALL CODE TO DRAW MENUS MUST GO ABOVE THIS LINE
+
 
 
         elif inGame:
@@ -153,9 +199,10 @@ def main():
 
             if player.coin_hit:
                 if current_level_no < len(level_definitions)-1:
-                    current_level_no += 1
-                    current_level = levels.NewLevel(player, level_definitions[current_level_no])
-                    setupLevel(player, end_coin, current_level)
+                    inMenu = True
+                    # current_level_no += 1
+                    # current_level = levels.NewLevel(player, level_definitions[current_level_no])
+                    # setupLevel(player, end_coin, current_level)
                 else:
                     winner = True
 
@@ -186,6 +233,31 @@ def main():
 
         #go ahead and update the screen with what we've drawn
         pygame.display.flip()
+<<<<<<< HEAD
+=======
+    # done = False
+    pygame.mixer.music.stop()
+
+    win_music = pygame.mixer.music.load("game_sounds/winsound.mp3")
+
+    fontObj = pygame.font.Font('freesansbold.ttf', 32)
+    textSurfaceObj = fontObj.render("You Won!", True, constants.WHITE)
+    textRectObj = textSurfaceObj.get_rect()
+    textRectObj.center = (constants.SCREEN_WIDTH // 2, constants.SCREEN_HEIGHT // 2)
+
+    if winner is True:
+        pygame.mixer.music.play(1)
+        while not done:
+            for event in pygame.event.get():#User did something
+                if event.type == pygame.QUIT: #if user clicked close
+                    done = True # Flag that we are done so loop is exited
+            screen.fill(constants.BLACK)
+            screen.blit(textSurfaceObj, textRectObj)
+            pygame.display.flip()
+            time.sleep(5)
+            break
+
+>>>>>>> calebMenus
 
     pygame.quit()
 
@@ -196,6 +268,14 @@ def setupLevel(player, coin, level):
     player.rect.left, player.rect.bottom = level.platform_list.sprites()[0].rect.x, level.platform_list.sprites()[0].rect.y  # does
     player.change_y = 0
     coin.rect.x, coin.rect.y = level.coin_xy
+
+def menu_switch(state):
+    if state == -1:
+        pygame.quit()
+    else:
+        return menu_screens.menu(menu_definitions[state])
+
+
 
 if __name__ == "__main__":
     main()
