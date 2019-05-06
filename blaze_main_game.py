@@ -22,6 +22,7 @@ import pygame, thorpy
 import platformer_constants as constants
 import platformer_levels as levels
 import menu_screens
+import time
 
 from platformer_player import Player
 from platformer_interactables import Coin
@@ -77,6 +78,7 @@ def main():
     #used to manage how fast the screen updates
     clock = pygame.time.Clock()
     state = 0
+    current_level_no = 0
     previousState = 0
     current_menu = menu_switch(state)
     #current_menu = menu_screens.menu(menu_definitions[0])
@@ -107,13 +109,20 @@ def main():
                     current_level = levels.NewLevel(player, level_definitions[current_level_no])
                     setupLevel(player, end_coin, current_level)
 
-            state = current_menu.update(state)
-            if state != previousState:
+            state, current_level_no = current_menu.update(state, current_level_no)
+            if state == 3:
+                inMenu = False
+                current_level = levels.NewLevel(player, level_definitions[current_level_no])
+                setupLevel(player, end_coin, current_level)
+                state = 1
+            elif state != previousState:
                 previousState = state
                 current_menu = menu_switch(state)
+
             #print("State:", state)
             #ALL CODE TO DRAW MENUS MUST GO BELOW THIS LINE
-            current_menu.draw(screen)
+            if inMenu:
+                current_menu.draw(screen)
             # ALL CODE TO DRAW MENUS MUST GO ABOVE THIS LINE
 
 
@@ -186,9 +195,10 @@ def main():
 
             if player.coin_hit:
                 if current_level_no < len(level_definitions)-1:
-                    current_level_no += 1
-                    current_level = levels.NewLevel(player, level_definitions[current_level_no])
-                    setupLevel(player, end_coin, current_level)
+                    inMenu = True
+                    # current_level_no += 1
+                    # current_level = levels.NewLevel(player, level_definitions[current_level_no])
+                    # setupLevel(player, end_coin, current_level)
                 else:
                     winner = True
                     break
@@ -222,8 +232,9 @@ def main():
             screen.fill(constants.BLACK)
             screen.blit(textSurfaceObj, textRectObj)
             pygame.display.flip()
-    # except:
-    #     pass
+            time.sleep(5)
+            break
+
 
     pygame.quit()
 
@@ -242,10 +253,6 @@ def menu_switch(state):
         return menu_screens.menu(menu_definitions[state])
 
 
-
-
-def testPrint():
-    print("testPrint!")
 
 if __name__ == "__main__":
     main()

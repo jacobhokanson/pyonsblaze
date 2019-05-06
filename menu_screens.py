@@ -31,7 +31,7 @@ class menu():
             mybutton.rect.y = button[2]
             self.button_list.add(mybutton)
 
-    def update(self, state):
+    def update(self, state, level_selected):
         for button in self.button_list:
             mytuple = pygame.mouse.get_pos()
             xrange = range(button.rect[0], button.rect[0] + button.rect[2])
@@ -41,13 +41,18 @@ class menu():
                 press = pygame.mouse.get_pressed()
 
                 if press[0] == 1:
-                    print(button.myFunction)
-                    return button.myFunction
+                    state = button.myFunction
+                    if state >= 10:
+                        level_selected = state - 10
+                        print(level_selected)
+                        state = 3
+
+
             else:
                 #button.image = sprite_sheet.get_image(100, 200, 70, 70)
                 button.mouseChecker = 0
         self.button_list.update()
-        return state
+        return state, level_selected
         # for button in self.button_list:
         #     mytuple = pygame.mouse.get_pos()
         #     xrange = range(button.rect[0], button.rect[0] + button.rect[2])
@@ -118,6 +123,11 @@ menu_definitions = \
         [
             [platforms.BOX, 150, 420, "Home Screen", 0],
             [platforms.BOXX, 550, 420, 'Quit', -1],
+            [platforms.DIRT, 70, 200, 'Level 1,', 10],
+            [platforms.STONE_MIDDLE, 200, 200, 'Level 2', 11],
+            [platforms.GRASS_MIDDLE, 330, 200, 'Level 3', 12],
+            [platforms.PURPLE_MIDDLE, 460, 200, 'Level 4', 13],
+            [platforms.CARPET, 590, 200, 'Level 5', 14],
 
         ],
     ],
